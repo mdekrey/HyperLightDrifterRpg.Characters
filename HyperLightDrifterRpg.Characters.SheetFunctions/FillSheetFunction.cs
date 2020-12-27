@@ -42,7 +42,7 @@ namespace HyperLightDrifterRpg.Characters
                 case (null, _):
                     return new BadRequestResult();
                 case (byte[] pdfBytes, _):
-                    return new FileContentResult(pdfBytes, "application/pdf");
+                    return new FileContentResult(pdfBytes, "application/pdf") { FileDownloadName = $"character-{data.Style}-{DateTime.Now:yyyy-MM-dd}.pdf" };
             }
         }
 

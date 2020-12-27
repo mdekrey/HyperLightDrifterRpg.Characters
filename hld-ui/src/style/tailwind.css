@@ -1,0 +1,59 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+body {
+    @apply bg-gray-900 text-gray-100;
+}
+
+a[href] {
+    @apply underline font-bold;
+}
+
+h1, h2, h3, h4, h5 {
+    @apply font-bold mb-4;
+}
+
+h1 {
+    @apply text-4xl;
+}
+
+h2 {
+    @apply text-3xl;
+}
+
+h3 {
+    @apply text-2xl;
+}
+
+h4 {
+    @apply text-xl;
+}
+
+h5 {
+    @apply text-lg;
+}
+
+main {
+    & p, & ul, & ol, & li {
+        @apply my-4;
+    }
+}
+
+.form-section {
+    @apply flex rounded;
+
+    > label {
+        @apply inline-flex m-2 w-24 flex-none py-px;
+
+        @screen md {
+            @apply w-32;
+        }
+    }
+
+    &:hover, &:focus-within {
+        @apply bg-gray-900;
+    }
+}
