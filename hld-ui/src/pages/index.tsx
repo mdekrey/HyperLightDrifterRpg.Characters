@@ -9,7 +9,7 @@ import { Button, buttonStyles } from "../style/button";
 import { useLens } from "../utils/useLens";
 import { useLocalstorageState } from "../utils/useLocalstorageState";
 import { downloadBlob } from "../utils/downloadBlob";
-import { delayedProgress, isSuccess, isFailure, isComplete } from "../utils/delayedProgress";
+import { delayedProgress, isSuccess, isFailure } from "../utils/delayedProgress";
 import { useCancelableEvent } from "../utils/useCancelableEvent";
 import { neverEver } from "../utils/neverEver";
 
@@ -30,7 +30,6 @@ const IndexPage = () => {
 					map(response => response.status >= 200 && response.status < 300)
 				)
 			),
-			// TODO - save id from response
 			[]
 		),
 		undefined
@@ -48,13 +47,13 @@ const IndexPage = () => {
 			<IdentitySection identity={identity} />
 
 			<div className="py-3 px-4 sm:p-6 sm:flex sm:flex-row sm:justify-end sm:items-center">
-				{!isComplete(savingState) ? (
-					<Button
-						className={`${buttonStyles.green} ${savingState === "progress" ? "opacity-25" : ""}`}
-						disabled={savingState === "progress"}
-						onClick={() => saveDrifter(drifter)}
-					>
-						{savingState === "progress" ? "Working..." : "Generate"}
+				{savingState === undefined ? (
+					<Button className={buttonStyles.green} onClick={() => saveDrifter(drifter)}>
+						Generate
+					</Button>
+				) : savingState === "progress" ? (
+					<Button className={`${buttonStyles.green} opacity-25`} disabled={true}>
+						Working...
 					</Button>
 				) : isSuccess(savingState) ? (
 					<>
