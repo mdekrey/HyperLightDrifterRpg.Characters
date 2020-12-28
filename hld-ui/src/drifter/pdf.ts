@@ -1,231 +1,261 @@
 import { Drifter } from "./rules";
 
 export type SheetHLDv5 = {
-	"Dash-4-background": boolean;
-	"DashUpgrade-4-show": boolean;
-	"Dash-4-background 2": boolean;
-	"DashUpgrade-4-show 2": boolean;
-	"Corruption-1": boolean;
-	"Boost-Nerve": string;
-	"Att-Vigor": string;
-	"Att-Agility": string;
-	"woe-01": boolean;
-	"woe-02": boolean;
-	"woe-05": boolean;
-	"woe-03": boolean;
-	"woe-06": boolean;
-	"woe-09": boolean;
-	"woe-10": boolean;
-	"woe-08": boolean;
-	"woe-04": boolean;
-	"Att-Insight": string;
-	"Att-Presence": string;
-	Trait: string;
-	Knack: string;
-	Conditions: string;
-	Talents: string;
-	Inventory: string;
-	Bits: string;
-	Components: string;
-	Ingredients: string;
-	Name: string;
-	Class: string;
-	"Specialized Disciplines": string;
-	"Combat-Fortune": string;
-	"Combat-Temperance": string;
-	"Social-Fortune": string;
-	"Social-Temperance": string;
-	"Manipulate-Fortune": string;
-	"Manipulate-Temperance": string;
-	"Exploration-Fortune": string;
-	"Exploration-Temperance": string;
-	"Survival-Fortune": string;
-	"Survival-Temperance": string;
-	"Health Current": string;
-	"Energy Current": string;
-	"Dash-1-fill": boolean;
-	"Dash-2-fill": boolean;
-	"Dash-4-fill": boolean;
-	"DashUpgrade-4-hide": boolean;
-	"xp-1": boolean;
-	"xp-1-1": boolean;
-	"xp-1-3": boolean;
-	"xp-1-2": boolean;
-	"xp-1-4": boolean;
-	"Energy Max": string;
-	"Talent-Passive-Effect": string;
-	"Talents 3": string;
-	"Talents 4": string;
-	"Talents 5": string;
-	"Talents 6": string;
-	"Talents 7": string;
-	"Corruption-2": boolean;
-	"Corruption-3": boolean;
-	"Corruption-4": boolean;
-	"Corruption-5": boolean;
-	"Corruption-6": boolean;
-	"Corruption-7": boolean;
-	"Corruption-8": boolean;
-	"Corruption-9": boolean;
-	"Corruption-10": boolean;
-	"Corruption-11": boolean;
-	"Corruption-1f 12": boolean;
-	Pronouns: string;
-	"Character Description": string;
-	Mission: string;
-	"Advancements Perks": string;
-	"Woe-Fortune": string;
-	"Woe-Temperance": string;
-	"Advancement Tier-1": string;
-	xp0: boolean;
-	"xp-10": boolean;
-	"xp-11": boolean;
-	"xp-12": boolean;
-	"xp-13": boolean;
-	xp1: boolean;
-	"xp-14": boolean;
-	"xp-15": boolean;
-	"xp-16": boolean;
-	"xp-17": boolean;
-	xp2: boolean;
-	"xp-18": boolean;
-	"xp-19": boolean;
-	"xp-110": boolean;
-	"xp-111": boolean;
-	"Boost-Grit": string;
-	"Advancement Tier0": string;
-	"Advancement Tier1": string;
-	"Advancement Tier2": string;
-	"Resistance Value": string;
-	"Armor Value": string;
-	"woe-11": boolean;
-	"woe-12": boolean;
-	"woe-07": boolean;
-	"Health Max": string;
-	"DashUpgrade-4-hide 2": boolean;
-	"Dash-4-fill 2": boolean;
-	"Button 60": boolean;
-	"HP-1": boolean;
-	"HP-10": boolean;
-	"HP-11": boolean;
-	"HP-12": boolean;
-	"HP-13": boolean;
-	"HP-14": boolean;
-	"HP-15": boolean;
-	"HP-16": boolean;
-	"HP-17": boolean;
-	"HP-18": boolean;
-	"HP-19": boolean;
-	"HP-2": boolean;
-	"HP-20": boolean;
-	"HP-21": boolean;
-	"HP-22": boolean;
-	"HP-23": boolean;
-	"HP-24": boolean;
-	"HP-3": boolean;
-	"HP-4": boolean;
-	"HP-5": boolean;
-	"HP-6": boolean;
-	"HP-7": boolean;
-	"HP-8": boolean;
-	"HP-9": boolean;
-	"Energy-11": boolean;
-	"Energy-10": boolean;
-	"Energy-1": boolean;
-	"Energy-9": boolean;
-	"Energy-2": boolean;
-	"Energy-8": boolean;
-	"Energy-7": boolean;
-	"Energy-6": boolean;
-	"Energy-5": boolean;
-	"Energy-4": boolean;
-	"Energy-3": boolean;
-	"Energy-24": boolean;
-	"Energy-23": boolean;
-	"Energy-22": boolean;
-	"Energy-21": boolean;
-	"Energy-20": boolean;
-	"Energy-19": boolean;
-	"Energy-18": boolean;
-	"Energy-17": boolean;
-	"Energy-16": boolean;
-	"Energy-15": boolean;
-	"Energy-14": boolean;
-	"Energy-13": boolean;
-	"Energy-12": boolean;
-	"EnergyMax-8": boolean;
-	"EnergyMax-9": boolean;
-	"EnergyMax-1": boolean;
-	"EnergyMax-10": boolean;
-	"EnergyMax-11": boolean;
-	"EnergyMax-12": boolean;
-	"EnergyMax-13": boolean;
-	"EnergyMax-14": boolean;
-	"EnergyMax-15": boolean;
-	"EnergyMax-16": boolean;
-	"EnergyMax-17": boolean;
-	"EnergyMax-18": boolean;
-	"EnergyMax-19": boolean;
-	"EnergyMax-2": boolean;
-	"EnergyMax-20": boolean;
-	"EnergyMax-21": boolean;
-	"EnergyMax-22": boolean;
-	"EnergyMax-23": boolean;
-	"EnergyMax-24": boolean;
-	"EnergyMax-3": boolean;
-	"EnergyMax-4": boolean;
-	"EnergyMax-5": boolean;
-	"EnergyMax-6": boolean;
-	"EnergyMax-7": boolean;
-	"HealthMax-1": boolean;
-	"HealthMax-10": boolean;
-	"HealthMax-11": boolean;
-	"HealthMax-12": boolean;
-	"HealthMax-13": boolean;
-	"HealthMax-14": boolean;
-	"HealthMax-15": boolean;
-	"HealthMax-16": boolean;
-	"HealthMax-17": boolean;
-	"HealthMax-18": boolean;
-	"HealthMax-19": boolean;
-	"HealthMax-2": boolean;
-	"HealthMax-20": boolean;
-	"HealthMax-21": boolean;
-	"HealthMax-22": boolean;
-	"HealthMax-23": boolean;
-	"HealthMax-24": boolean;
-	"HealthMax-3": boolean;
-	"HealthMax-4": boolean;
-	"HealthMax-5": boolean;
-	"HealthMax-6": boolean;
-	"HealthMax-7": boolean;
-	"HealthMax-8": boolean;
-	"HealthMax-9": boolean;
-	"Talent-Passive-Title": string;
-	"Talent-1-Title": string;
-	"Talent-2-Title": string;
-	"Talent-3-Title": string;
-	"Talent-4-Title": string;
-	"Talent-Dash-Title": string;
-	"Inventory 2": string;
-	"Conditions 2": string;
-	Portrait: boolean;
+	"Dash-4-background": PdfField<boolean>;
+	"DashUpgrade-4-show": PdfField<boolean>;
+	"Dash-4-background 2": PdfField<boolean>;
+	"DashUpgrade-4-show 2": PdfField<boolean>;
+	"Corruption-1": PdfField<boolean>;
+	"Boost-Nerve": PdfField<string>;
+	"Att-Vigor": PdfField<string>;
+	"Att-Agility": PdfField<string>;
+	"woe-01": PdfField<boolean>;
+	"woe-02": PdfField<boolean>;
+	"woe-05": PdfField<boolean>;
+	"woe-03": PdfField<boolean>;
+	"woe-06": PdfField<boolean>;
+	"woe-09": PdfField<boolean>;
+	"woe-10": PdfField<boolean>;
+	"woe-08": PdfField<boolean>;
+	"woe-04": PdfField<boolean>;
+	"Att-Insight": PdfField<string>;
+	"Att-Presence": PdfField<string>;
+	Trait: PdfField<string>;
+	Knack: PdfField<string>;
+	Conditions: PdfField<string>;
+	Talents: PdfField<string>;
+	Inventory: PdfField<string>;
+	Bits: PdfField<string>;
+	Components: PdfField<string>;
+	Ingredients: PdfField<string>;
+	Name: PdfField<string>;
+	Class: PdfField<string>;
+	"Specialized Disciplines": PdfField<string>;
+	"Combat-Fortune": PdfField<string>;
+	"Combat-Temperance": PdfField<string>;
+	"Social-Fortune": PdfField<string>;
+	"Social-Temperance": PdfField<string>;
+	"Manipulate-Fortune": PdfField<string>;
+	"Manipulate-Temperance": PdfField<string>;
+	"Exploration-Fortune": PdfField<string>;
+	"Exploration-Temperance": PdfField<string>;
+	"Survival-Fortune": PdfField<string>;
+	"Survival-Temperance": PdfField<string>;
+	"Health Current": PdfField<string>;
+	"Energy Current": PdfField<string>;
+	"Dash-1-fill": PdfField<boolean>;
+	"Dash-2-fill": PdfField<boolean>;
+	"Dash-4-fill": PdfField<boolean>;
+	"DashUpgrade-4-hide": PdfField<boolean>;
+	"xp-1": PdfField<boolean>;
+	"xp-1-1": PdfField<boolean>;
+	"xp-1-3": PdfField<boolean>;
+	"xp-1-2": PdfField<boolean>;
+	"xp-1-4": PdfField<boolean>;
+	"Energy Max": PdfField<string>;
+	"Talent-Passive-Effect": PdfField<string>;
+	"Talents 3": PdfField<string>;
+	"Talents 4": PdfField<string>;
+	"Talents 5": PdfField<string>;
+	"Talents 6": PdfField<string>;
+	"Talents 7": PdfField<string>;
+	"Corruption-2": PdfField<boolean>;
+	"Corruption-3": PdfField<boolean>;
+	"Corruption-4": PdfField<boolean>;
+	"Corruption-5": PdfField<boolean>;
+	"Corruption-6": PdfField<boolean>;
+	"Corruption-7": PdfField<boolean>;
+	"Corruption-8": PdfField<boolean>;
+	"Corruption-9": PdfField<boolean>;
+	"Corruption-10": PdfField<boolean>;
+	"Corruption-11": PdfField<boolean>;
+	"Corruption-1f 12": PdfField<boolean>;
+	Pronouns: PdfField<string>;
+	"Character Description": PdfField<string>;
+	Mission: PdfField<string>;
+	"Advancements Perks": PdfField<string>;
+	"Woe-Fortune": PdfField<string>;
+	"Woe-Temperance": PdfField<string>;
+	"Advancement Tier-1": PdfField<string>;
+	xp0: PdfField<boolean>;
+	"xp-10": PdfField<boolean>;
+	"xp-11": PdfField<boolean>;
+	"xp-12": PdfField<boolean>;
+	"xp-13": PdfField<boolean>;
+	xp1: PdfField<boolean>;
+	"xp-14": PdfField<boolean>;
+	"xp-15": PdfField<boolean>;
+	"xp-16": PdfField<boolean>;
+	"xp-17": PdfField<boolean>;
+	xp2: PdfField<boolean>;
+	"xp-18": PdfField<boolean>;
+	"xp-19": PdfField<boolean>;
+	"xp-110": PdfField<boolean>;
+	"xp-111": PdfField<boolean>;
+	"Boost-Grit": PdfField<string>;
+	"Advancement Tier0": PdfField<string>;
+	"Advancement Tier1": PdfField<string>;
+	"Advancement Tier2": PdfField<string>;
+	"Resistance Value": PdfField<string>;
+	"Armor Value": PdfField<string>;
+	"woe-11": PdfField<boolean>;
+	"woe-12": PdfField<boolean>;
+	"woe-07": PdfField<boolean>;
+	"Health Max": PdfField<string>;
+	"DashUpgrade-4-hide 2": PdfField<boolean>;
+	"Dash-4-fill 2": PdfField<boolean>;
+	"Button 60": PdfField<boolean>;
+	"HP-1": PdfField<boolean>;
+	"HP-10": PdfField<boolean>;
+	"HP-11": PdfField<boolean>;
+	"HP-12": PdfField<boolean>;
+	"HP-13": PdfField<boolean>;
+	"HP-14": PdfField<boolean>;
+	"HP-15": PdfField<boolean>;
+	"HP-16": PdfField<boolean>;
+	"HP-17": PdfField<boolean>;
+	"HP-18": PdfField<boolean>;
+	"HP-19": PdfField<boolean>;
+	"HP-2": PdfField<boolean>;
+	"HP-20": PdfField<boolean>;
+	"HP-21": PdfField<boolean>;
+	"HP-22": PdfField<boolean>;
+	"HP-23": PdfField<boolean>;
+	"HP-24": PdfField<boolean>;
+	"HP-3": PdfField<boolean>;
+	"HP-4": PdfField<boolean>;
+	"HP-5": PdfField<boolean>;
+	"HP-6": PdfField<boolean>;
+	"HP-7": PdfField<boolean>;
+	"HP-8": PdfField<boolean>;
+	"HP-9": PdfField<boolean>;
+	"Energy-11": PdfField<boolean>;
+	"Energy-10": PdfField<boolean>;
+	"Energy-1": PdfField<boolean>;
+	"Energy-9": PdfField<boolean>;
+	"Energy-2": PdfField<boolean>;
+	"Energy-8": PdfField<boolean>;
+	"Energy-7": PdfField<boolean>;
+	"Energy-6": PdfField<boolean>;
+	"Energy-5": PdfField<boolean>;
+	"Energy-4": PdfField<boolean>;
+	"Energy-3": PdfField<boolean>;
+	"Energy-24": PdfField<boolean>;
+	"Energy-23": PdfField<boolean>;
+	"Energy-22": PdfField<boolean>;
+	"Energy-21": PdfField<boolean>;
+	"Energy-20": PdfField<boolean>;
+	"Energy-19": PdfField<boolean>;
+	"Energy-18": PdfField<boolean>;
+	"Energy-17": PdfField<boolean>;
+	"Energy-16": PdfField<boolean>;
+	"Energy-15": PdfField<boolean>;
+	"Energy-14": PdfField<boolean>;
+	"Energy-13": PdfField<boolean>;
+	"Energy-12": PdfField<boolean>;
+	"EnergyMax-8": PdfField<boolean>;
+	"EnergyMax-9": PdfField<boolean>;
+	"EnergyMax-1": PdfField<boolean>;
+	"EnergyMax-10": PdfField<boolean>;
+	"EnergyMax-11": PdfField<boolean>;
+	"EnergyMax-12": PdfField<boolean>;
+	"EnergyMax-13": PdfField<boolean>;
+	"EnergyMax-14": PdfField<boolean>;
+	"EnergyMax-15": PdfField<boolean>;
+	"EnergyMax-16": PdfField<boolean>;
+	"EnergyMax-17": PdfField<boolean>;
+	"EnergyMax-18": PdfField<boolean>;
+	"EnergyMax-19": PdfField<boolean>;
+	"EnergyMax-2": PdfField<boolean>;
+	"EnergyMax-20": PdfField<boolean>;
+	"EnergyMax-21": PdfField<boolean>;
+	"EnergyMax-22": PdfField<boolean>;
+	"EnergyMax-23": PdfField<boolean>;
+	"EnergyMax-24": PdfField<boolean>;
+	"EnergyMax-3": PdfField<boolean>;
+	"EnergyMax-4": PdfField<boolean>;
+	"EnergyMax-5": PdfField<boolean>;
+	"EnergyMax-6": PdfField<boolean>;
+	"EnergyMax-7": PdfField<boolean>;
+	"HealthMax-1": PdfField<boolean>;
+	"HealthMax-10": PdfField<boolean>;
+	"HealthMax-11": PdfField<boolean>;
+	"HealthMax-12": PdfField<boolean>;
+	"HealthMax-13": PdfField<boolean>;
+	"HealthMax-14": PdfField<boolean>;
+	"HealthMax-15": PdfField<boolean>;
+	"HealthMax-16": PdfField<boolean>;
+	"HealthMax-17": PdfField<boolean>;
+	"HealthMax-18": PdfField<boolean>;
+	"HealthMax-19": PdfField<boolean>;
+	"HealthMax-2": PdfField<boolean>;
+	"HealthMax-20": PdfField<boolean>;
+	"HealthMax-21": PdfField<boolean>;
+	"HealthMax-22": PdfField<boolean>;
+	"HealthMax-23": PdfField<boolean>;
+	"HealthMax-24": PdfField<boolean>;
+	"HealthMax-3": PdfField<boolean>;
+	"HealthMax-4": PdfField<boolean>;
+	"HealthMax-5": PdfField<boolean>;
+	"HealthMax-6": PdfField<boolean>;
+	"HealthMax-7": PdfField<boolean>;
+	"HealthMax-8": PdfField<boolean>;
+	"HealthMax-9": PdfField<boolean>;
+	"Talent-Passive-Title": PdfField<string>;
+	"Talent-1-Title": PdfField<string>;
+	"Talent-2-Title": PdfField<string>;
+	"Talent-3-Title": PdfField<string>;
+	"Talent-4-Title": PdfField<string>;
+	"Talent-Dash-Title": PdfField<string>;
+	"Inventory 2": PdfField<string>;
+	"Conditions 2": PdfField<string>;
+	Portrait: PdfField<boolean>;
 };
+
+export type PdfField<T> = {
+	value?: T;
+	generateAppearance?: boolean;
+	visible?: boolean | number;
+};
+
+const orderedHealth = Array(24)
+	.fill(0)
+	.map((_, i) => `HP-${i + 1}` as keyof SheetHLDv5);
+const orderedHealthMax = Array(24)
+	.fill(0)
+	.map((_, i) => `HealthMax-${i + 1}` as keyof SheetHLDv5);
+const orderedEnergy = Array(24)
+	.fill(0)
+	.map((_, i) => `Energy-${i + 1}` as keyof SheetHLDv5);
+const orderedEnergyMax = Array(24)
+	.fill(0)
+	.map((_, i) => `EnergyMax-${i + 1}` as keyof SheetHLDv5);
+function checkLevels(levelCheckboxes: Array<keyof SheetHLDv5>, value: number) {
+	return levelCheckboxes.reduce((prev, next, index) => {
+		prev[next] = { visible: index + 1 === value ? 4 : 1 };
+		return prev;
+	}, {} as Partial<SheetHLDv5>);
+}
 
 export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 	return {
-		Name: drifter.identity.name,
-		Pronouns: drifter.identity.pronouns,
-		"Character Description": drifter.identity.description,
-		Mission: drifter.identity.mission,
-		Class: drifter.features.drifterClass,
-		"Specialized Disciplines": drifter.features.speciality,
-		Trait: drifter.features.trait,
-		Knack: drifter.features.knack,
-		"Health Current": `${drifter.resources.health.current}`,
-		"Health Max": `${drifter.resources.health.max}`,
-		"Energy Current": `${drifter.resources.energy.current}`,
-		"Energy Max": `${drifter.resources.energy.max}`,
+		Name: { value: drifter.identity.name },
+		Pronouns: { value: drifter.identity.pronouns },
+		"Character Description": { value: drifter.identity.description },
+		Mission: { value: drifter.identity.mission },
+		Class: { value: drifter.features.drifterClass },
+		"Specialized Disciplines": { value: drifter.features.speciality },
+		Trait: { value: drifter.features.trait },
+		Knack: { value: drifter.features.knack },
+
+		"Health Current": { value: `${drifter.resources.health.current}`, generateAppearance: true },
+		"Health Max": { value: `${drifter.resources.health.max}`, generateAppearance: true },
+		"Energy Current": { value: `${drifter.resources.energy.current}`, generateAppearance: true },
+		"Energy Max": { value: `${drifter.resources.energy.max}`, generateAppearance: true },
+		...checkLevels(orderedHealthMax, drifter.resources.health.max),
+		...checkLevels(orderedHealth, drifter.resources.health.current),
+		...checkLevels(orderedEnergyMax, drifter.resources.energy.max),
+		...checkLevels(orderedEnergy, drifter.resources.energy.current),
 	};
 }
 

@@ -30,13 +30,17 @@ namespace HyperLightDrifterRpg.Characters
                     Style = "HLD", 
                     Version = "v5", 
                     Fields = {
-                        { field.Key, field.Value switch
+                        { field.Key, new JObject() {
                             {
-                                FillSheetFunction.FieldType.Boolean => new JValue(true),
-                                FillSheetFunction.FieldType.String => new JValue("foo"),
-                                _ => throw new NotImplementedException()
+                                "value",
+                                field.Value switch
+                                {
+                                    FillSheetFunction.FieldType.Boolean => new JValue(true),
+                                    FillSheetFunction.FieldType.String => new JValue("foo"),
+                                    _ => throw new NotImplementedException()
+                                }
                             }
-                        }
+                        } }
                     },
                 });
                 Assert.NotNull(result);
@@ -53,11 +57,17 @@ namespace HyperLightDrifterRpg.Characters
             var typeScriptType = $@"
             export type Sheet{sheet.Style}{sheet.Version} = {{
                 {string.Join(@"
-                ", fields.Select(f => $"'{f.Key}': {f.Value.ToString("g").ToLower()};"))}
-            }};";
+                ", fields.Select(f => $"'{f.Key}': PdfField<{f.Value.ToString("g").ToLower()}>;"))}
+            }};
+
+            export type PdfField<T> = {{
+                value?: T;
+                generateAppearance?: boolean;
+                visible?: boolean | number;
+            }}";
             Assert.StartsWith("export type Sheet", typeScriptType.Trim());
-            Assert.Contains("'Name': string;", typeScriptType);
-            Assert.Contains("'xp-1': boolean;", typeScriptType);
+            Assert.Contains("'Name': PdfField<string>;", typeScriptType);
+            Assert.Contains("'xp-1': PdfField<boolean>;", typeScriptType);
         }
 
         [Fact]
@@ -68,17 +78,17 @@ namespace HyperLightDrifterRpg.Characters
                 Style = "HLD",
                 Version = "v5",
                 Fields = {
-                    {"DashUpgrade-4-show", "Yes" },
-                    {"DashUpgrade-4-show 2", "Yes" },
-                    {"Corruption-1", "Yes" },
-                    {"Name", "Tester" },
-                    {"Class", "Drifter" },
-                    {"Dash-1-fill", "Yes" },
-                    {"DashUpgrade-4-hide", "Yes" },
-                    {"xp-1", "Yes" },
-                    {"Pronouns", "he/him" },
-                    {"xp-10", "Yes" },
-                    {"DashUpgrade-4-hide 2", "Yes" },
+                    {"DashUpgrade-4-show", new JObject() { { "value", "Yes" } } },
+                    {"DashUpgrade-4-show 2", new JObject() { { "value", "Yes" } } },
+                    {"Corruption-1", new JObject() { { "value", "Yes" } } },
+                    {"Name", new JObject() { { "value", "Tester" } } },
+                    {"Class", new JObject() { { "value", "Drifter" } } },
+                    {"Dash-1-fill", new JObject() { { "value", "Yes" } } },
+                    {"DashUpgrade-4-hide", new JObject() { { "value", "Yes" } } },
+                    {"xp-1", new JObject() { { "value", "Yes" } } },
+                    {"Pronouns", new JObject() { { "value", "he/him" } } },
+                    {"xp-10", new JObject() { { "value", "Yes" } } },
+                    {"DashUpgrade-4-hide 2", new JObject() { { "value", "Yes" } } },
                 },
             });
             Assert.NotNull(bytes);
@@ -108,17 +118,17 @@ namespace HyperLightDrifterRpg.Characters
                 Style = "HLD",
                 Version = "v5",
                 Fields = {
-                    {"DashUpgrade-4-show", "Yes" },
-                    {"DashUpgrade-4-show 2", "Yes" },
-                    {"Corruption-1", "Yes" },
-                    {"Name", "Tester" },
-                    {"Class", "Drifter" },
-                    {"Dash-1-fill", "Yes" },
-                    {"DashUpgrade-4-hide", "Yes" },
-                    {"xp-1", "Yes" },
-                    {"Pronouns", "he/him" },
-                    {"xp-10", "Yes" },
-                    {"DashUpgrade-4-hide 2", "Yes" },
+                    {"DashUpgrade-4-show", new JObject() { { "value", "Yes" } } },
+                    {"DashUpgrade-4-show 2", new JObject() { { "value", "Yes" } } },
+                    {"Corruption-1", new JObject() { { "value", "Yes" } } },
+                    {"Name", new JObject() { { "value", "Tester" } } },
+                    {"Class", new JObject() { { "value", "Drifter" } } },
+                    {"Dash-1-fill", new JObject() { { "value", "Yes" } } },
+                    {"DashUpgrade-4-hide", new JObject() { { "value", "Yes" } } },
+                    {"xp-1", new JObject() { { "value", "Yes" } } },
+                    {"Pronouns", new JObject() { { "value", "he/him" } } },
+                    {"xp-10", new JObject() { { "value", "Yes" } } },
+                    {"DashUpgrade-4-hide 2", new JObject() { { "value", "Yes" } } },
                 },
                 ReadOnly = true,
             });

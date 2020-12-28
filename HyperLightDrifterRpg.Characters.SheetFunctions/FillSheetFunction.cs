@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using iText.Kernel.Pdf;
 using iText.Forms;
 using System.Linq;
+using iText.Forms.Fields;
 
 namespace HyperLightDrifterRpg.Characters
 {
@@ -22,7 +23,7 @@ namespace HyperLightDrifterRpg.Characters
             public string Style { get; set; } = "HLD";
             public string Version { get; set; } = "v5";
             public bool ReadOnly { get; set; } = false;
-            public Dictionary<string, JToken> Fields { get; } = new Dictionary<string, JToken>();
+            public Dictionary<string, JObject> Fields { get; } = new Dictionary<string, JObject>();
         }
 
         [FunctionName("FillSheet")]
@@ -77,24 +78,41 @@ namespace HyperLightDrifterRpg.Characters
             {
                 if (!fields.ContainsKey(field))
                     return (null, $"Unknown field '{field}'. Valid fields are: {{{string.Join(", ", GetFields(sheet).Select(f => $"'{f.Key}: {f.Value.ToString("g")}'"))}}}");
-                fields[field].SetValue(
-                    sheet.Fields[field] switch
+
+                var fieldChange = sheet.Fields[field];
+                
+                if (fieldChange["value"] != null)
+                {
+                    var fieldValue = fieldChange["value"] switch
                     {
-                        JValue value when value.Type == JTokenType.Boolean => 
-                            (fields[field].GetAppearanceStates(), value.ToObject<bool>()) switch {
+                        JValue value when value.Type == JTokenType.Boolean =>
+                            (fields[field].GetAppearanceStates(), value.ToObject<bool>()) switch
+                            {
                                 (var list, true) when list.Length > 1 => list[1],
                                 (var list, false) when list.Length > 0 => list[0],
                                 (_, true) => "Yes",
                                 (_, false) => "Off"
                             },
                         var other => other.ToObject<string>(),
-                    }, 
-                    fields[field] switch
+                    };
+                    var generateAppearance = (fields[field], fieldChange) switch
                     {
-                        iText.Forms.Fields.PdfTextFormField t when t.IsMultiline() => true,
+                        (_, JObject obj) when obj["generateAppearance"] != null => obj["generateAppearance"].ToObject<bool>(),
+                        (iText.Forms.Fields.PdfTextFormField t, _) when t.IsMultiline() => true,
                         _ => false,
-                    }
-                );
+                    };
+
+                    fields[field].SetValue(fieldValue, generateAppearance);
+                }
+                if (fieldChange["visible"] != null)
+                {
+                    fields[field].SetVisibility(fieldChange["visible"] switch
+                    {
+                        var v when v.Type == JTokenType.Boolean => v.ToObject<bool>() ? PdfFormField.VISIBLE : PdfFormField.HIDDEN_BUT_PRINTABLE,
+                        var v when v.Type == JTokenType.Integer => v.ToObject<int>(),
+                        _ => PdfFormField.VISIBLE
+                    });
+                }
             }
 
             // TODO - test this
