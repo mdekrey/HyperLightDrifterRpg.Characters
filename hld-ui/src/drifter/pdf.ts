@@ -218,6 +218,14 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		Pronouns: drifter.identity.pronouns,
 		"Character Description": drifter.identity.description,
 		Mission: drifter.identity.mission,
+		Class: drifter.features.drifterClass,
+		"Specialized Disciplines": drifter.features.speciality,
+		Trait: drifter.features.trait,
+		Knack: drifter.features.knack,
+		"Health Current": `${drifter.resources.health.current}`,
+		"Health Max": `${drifter.resources.health.max}`,
+		"Energy Current": `${drifter.resources.energy.current}`,
+		"Energy Max": `${drifter.resources.energy.max}`,
 	};
 }
 

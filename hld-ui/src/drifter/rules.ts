@@ -7,8 +7,16 @@ export type Drifter = {
 		description: string;
 		mission: string;
 	};
-	features: {};
-	resources: {};
+	features: {
+		drifterClass: string;
+		speciality: string;
+		trait: string;
+		knack: string;
+	};
+	resources: {
+		health: { current: number; max: number };
+		energy: { current: number; max: number };
+	};
 	discipline: {};
 	dashes: {};
 	conditions: {};
@@ -25,8 +33,16 @@ export const defaultDrifter: Drifter = {
 		description: "",
 		mission: "",
 	},
-	features: {},
-	resources: {},
+	features: {
+		drifterClass: "",
+		speciality: "",
+		trait: "",
+		knack: "",
+	},
+	resources: {
+		health: { current: 10, max: 12 },
+		energy: { current: 10, max: 12 },
+	},
 	discipline: {},
 	dashes: {},
 	conditions: {},
