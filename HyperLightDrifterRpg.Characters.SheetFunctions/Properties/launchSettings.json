@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "HyperLightDrifterRpg.Characters.SheetFunctions": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 7071,
+      "useSSL": false
+    }
+  }
+}
