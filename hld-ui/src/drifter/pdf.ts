@@ -221,5 +221,4 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 	};
 }
 
-export const pdfEndpoint =
-	process.env.NODE_ENV === "production" ? "https://example.com/TODO" : "http://localhost:7071/api/FillSheet";
+export const pdfEndpoint = "/api/FillSheet";
