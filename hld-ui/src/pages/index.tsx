@@ -9,36 +9,22 @@ import { Button, buttonStyles } from "../style/button";
 import { useLens } from "../utils/useLens";
 import { useLocalstorageState } from "../utils/useLocalstorageState";
 import { downloadBlob } from "../utils/downloadBlob";
-import { delayedProgress, isSuccess, isFailure } from "../utils/delayedProgress";
-import { useCancelableEvent } from "../utils/useCancelableEvent";
+import { isSuccess, isFailure } from "../utils/delayedProgress";
 import { neverEver } from "../utils/neverEver";
+import { useDefaultCancelableEvent } from "../utils/useDefaultCancelableEvent";
 
 const IndexPage = () => {
 	const [drifter, innerSetDrifter] = useLocalstorageState("editor", defaultDrifter);
+	const [savingState, saveDrifter, resetSaveDrifter] = useDefaultCancelableEvent(downloadDrifterPdf, []);
 
-	const [savingState, saveDrifter, resetSaveDrifter] = useCancelableEvent(
-		React.useCallback(
-			delayedProgress((drifter: Readonly<Drifter>) =>
-				ajax({
-					method: "POST",
-					url: pdfEndpoint,
-					body: { fields: drifterToPdf(drifter), version: "v5", style: "HLD" },
-					headers: { "Content-Type": "application/json" },
-					responseType: "blob",
-				}).pipe(
-					tap(({ response }) => downloadBlob(response, `character.pdf`)),
-					map(response => response.status >= 200 && response.status < 300)
-				)
-			),
-			[]
-		),
-		undefined
+	const setDrifter = React.useCallback<typeof innerSetDrifter>(
+		drifter => {
+			innerSetDrifter(drifter);
+			// also clear saving state
+			resetSaveDrifter();
+		},
+		[innerSetDrifter, resetSaveDrifter]
 	);
-
-	const setDrifter: typeof innerSetDrifter = (...params) => {
-		innerSetDrifter(...params);
-		resetSaveDrifter();
-	};
 	const identity = useLens([drifter, setDrifter], identityLens);
 
 	return (
@@ -70,5 +56,18 @@ const IndexPage = () => {
 		</>
 	);
 };
+
+function downloadDrifterPdf(drifter: Readonly<Drifter>) {
+	return ajax({
+		method: "POST",
+		url: pdfEndpoint,
+		body: { fields: drifterToPdf(drifter), version: "v5", style: "HLD" },
+		headers: { "Content-Type": "application/json" },
+		responseType: "blob",
+	}).pipe(
+		tap(({ response }) => downloadBlob(response, `character.pdf`)),
+		map(response => response.status >= 200 && response.status < 300)
+	);
+}
 
 export default IndexPage;
