@@ -37,7 +37,7 @@ export const IdentitySection = ({ identity }: { identity: Stateful<DrifterIdenti
 			/>
 			<FormSection
 				label="Description"
-				fields={id => <ValueInput id={id} value={description} setValue={setDescription} />}
+				fields={id => <TextAreaInput id={id} value={description} setValue={setDescription} />}
 			/>
 			<FormSection
 				label="Mission"

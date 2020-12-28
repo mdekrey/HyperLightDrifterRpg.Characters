@@ -77,11 +77,24 @@ namespace HyperLightDrifterRpg.Characters
             {
                 if (!fields.ContainsKey(field))
                     return (null, $"Unknown field '{field}'. Valid fields are: {{{string.Join(", ", GetFields(sheet).Select(f => $"'{f.Key}: {f.Value.ToString("g")}'"))}}}");
-                fields[field].SetValue(sheet.Fields[field] switch
-                {
-                    JValue value when value.Type == JTokenType.Boolean => fields[field].GetAppearanceStates()[value.ToObject<bool>() ? 1 : 0],
-                    var other => other.ToObject<string>(),
-                }, false);
+                fields[field].SetValue(
+                    sheet.Fields[field] switch
+                    {
+                        JValue value when value.Type == JTokenType.Boolean => 
+                            (fields[field].GetAppearanceStates(), value.ToObject<bool>()) switch {
+                                (var list, true) when list.Length > 1 => list[1],
+                                (var list, false) when list.Length > 0 => list[0],
+                                (_, true) => "Yes",
+                                (_, false) => "Off"
+                            },
+                        var other => other.ToObject<string>(),
+                    }, 
+                    fields[field] switch
+                    {
+                        iText.Forms.Fields.PdfTextFormField t when t.IsMultiline() => true,
+                        _ => false,
+                    }
+                );
             }
 
             // TODO - test this
