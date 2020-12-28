@@ -50,11 +50,11 @@ const IndexPage = () => {
 			<div className="py-3 px-4 sm:p-6 sm:flex sm:flex-row sm:justify-end sm:items-center">
 				{!isComplete(savingState) ? (
 					<Button
-						className={buttonStyles.green}
+						className={`${buttonStyles.green} ${savingState === "progress" ? "opacity-25" : ""}`}
 						disabled={savingState === "progress"}
 						onClick={() => saveDrifter(drifter)}
 					>
-						Generate
+						{savingState === "progress" ? "Working..." : "Generate"}
 					</Button>
 				) : isSuccess(savingState) ? (
 					<>
