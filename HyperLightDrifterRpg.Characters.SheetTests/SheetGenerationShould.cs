@@ -53,7 +53,7 @@ namespace HyperLightDrifterRpg.Characters
         public void GenerateTypingInformation()
         {
             var sheet = new FillSheetFunction.CharacterSheet { Style = "HLD", Version = "v5" };
-            var fields = FillSheetFunction.GetFields(sheet);
+            var fields = FillSheetFunction.GetFields(sheet).OrderBy(f => f.Key);
             var typeScriptType = $@"
             export type Sheet{sheet.Style}{sheet.Version} = {{
                 {string.Join(@"
@@ -80,15 +80,19 @@ namespace HyperLightDrifterRpg.Characters
                 Fields = {
                     {"DashUpgrade-4-show", new JObject() { { "value", "Yes" } } },
                     {"DashUpgrade-4-show 2", new JObject() { { "value", "Yes" } } },
+                    {"Dash-4-background", new JObject() { { "visible", true } } },
+                    {"Dash-4-background 2", new JObject() { { "visible", true } } },
+                    {"Dash-4-fill", new JObject() { { "visible", true } } },
+                    {"Dash-4-fill 2", new JObject() { { "visible", true } } },
+                    {"DashUpgrade-4-hide", new JObject() { { "value", "Yes" }, { "visible", true } } },
+                    {"DashUpgrade-4-hide 2", new JObject() { { "value", "Yes" }, { "visible", true } } },
                     {"Corruption-1", new JObject() { { "value", "Yes" } } },
                     {"Name", new JObject() { { "value", "Tester" } } },
                     {"Class", new JObject() { { "value", "Drifter" } } },
                     {"Dash-1-fill", new JObject() { { "value", "Yes" } } },
-                    {"DashUpgrade-4-hide", new JObject() { { "value", "Yes" } } },
                     {"xp-1", new JObject() { { "value", "Yes" } } },
                     {"Pronouns", new JObject() { { "value", "he/him" } } },
                     {"xp-10", new JObject() { { "value", "Yes" } } },
-                    {"DashUpgrade-4-hide 2", new JObject() { { "value", "Yes" } } },
                 },
             });
             Assert.NotNull(bytes);
@@ -97,6 +101,7 @@ namespace HyperLightDrifterRpg.Characters
             using var reader = new PdfReader(memoryStream);
             using var original = new PdfDocument(reader);
             var originalFields = PdfAcroForm.GetAcroForm(original, false).GetFormFields();
+            System.IO.File.WriteAllBytes($"{nameof(FillFields)}.pdf", bytes);
 
             using var reader2 = GetReader("HyperLightDrifterRpg.Characters.filled.pdf");
             using var filled = new PdfDocument(reader2);
@@ -106,6 +111,7 @@ namespace HyperLightDrifterRpg.Characters
             {
                 Assert.Equal(filledFields[field].GetValueAsString(), originalFields[field].GetValueAsString());
                 Assert.Equal(filledFields[field].GetAppearanceStates(), originalFields[field].GetAppearanceStates());
+                Assert.Equal(filledFields[field].GetVisibility(), originalFields[field].GetVisibility());
                 // TODO - find a way to determine difference between "generateAppearance" programatically
             }
         }

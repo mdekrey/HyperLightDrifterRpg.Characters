@@ -1,5 +1,5 @@
 import React from "react";
-import { randomShortString } from "../../utils/randomShortString";
+import { randomShortString } from "../../../utils/randomShortString";
 
 export function FormSection({
 	label,

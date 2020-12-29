@@ -1,8 +1,8 @@
 import React from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterResources } from "../../rules";
-import { FormSection } from "../FormSection";
-import { NumericInput } from "../NumericInput";
+import { FormSection } from "../components/FormSection";
+import { NumericInput } from "../components/NumericInput";
 
 const healthCurrentLens = createLens(
 	(i: DrifterResources) => i.health.current,

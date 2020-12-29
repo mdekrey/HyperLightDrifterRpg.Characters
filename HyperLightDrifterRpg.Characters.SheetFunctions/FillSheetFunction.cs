@@ -12,7 +12,6 @@ using Newtonsoft.Json.Linq;
 using iText.Kernel.Pdf;
 using iText.Forms;
 using System.Linq;
-using iText.Forms.Fields;
 
 namespace HyperLightDrifterRpg.Characters
 {
@@ -106,16 +105,21 @@ namespace HyperLightDrifterRpg.Characters
                 }
                 if (fieldChange["visible"] != null)
                 {
-                    fields[field].SetVisibility(fieldChange["visible"] switch
+                    switch (fieldChange["visible"])
                     {
-                        var v when v.Type == JTokenType.Boolean => v.ToObject<bool>() ? PdfFormField.VISIBLE : PdfFormField.HIDDEN_BUT_PRINTABLE,
-                        var v when v.Type == JTokenType.Integer => v.ToObject<int>(),
-                        _ => PdfFormField.VISIBLE
-                    });
+                        case var v when v.Type == JTokenType.Boolean:
+                            fields[field].SetVisibility(
+                                v.ToObject<bool>(),
+                                null
+                            );
+                            break;
+                        case var v when v.Type == JTokenType.Integer:
+                            fields[field].SetVisibility(v.ToObject<int>());
+                            break;
+                    }
                 }
             }
 
-            // TODO - test this
             if (sheet.ReadOnly)
                 form.FlattenFields();
 

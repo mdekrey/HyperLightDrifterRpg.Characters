@@ -1,9 +1,9 @@
 import React from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterIdentity } from "../../rules";
-import { FormSection } from "../FormSection";
-import { TextAreaInput } from "../TextAreaInput";
-import { ValueInput } from "../ValueInput";
+import { FormSection } from "../components/FormSection";
+import { TextAreaInput } from "../components/TextAreaInput";
+import { ValueInput } from "../components/ValueInput";
 
 const nameLens = createLens(
 	(i: DrifterIdentity) => i.name,

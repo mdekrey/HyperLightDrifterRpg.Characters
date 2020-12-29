@@ -17,13 +17,27 @@ export type Drifter = {
 		health: { current: number; max: number };
 		energy: { current: number; max: number };
 	};
-	discipline: {};
-	dashes: {};
+	discipline: {
+		combat: DisciplineThresholds;
+		social: DisciplineThresholds;
+		manipulative: DisciplineThresholds;
+		exploration: DisciplineThresholds;
+		survival: DisciplineThresholds;
+	};
+	dashes: {
+		current: number;
+		max: number;
+	};
 	conditions: {};
 	equipment: {};
 	advancement: {};
 	abilities: {};
 	corruption: {};
+};
+
+export type DisciplineThresholds = {
+	fortune: number;
+	temperance: number;
 };
 
 export const defaultDrifter: Drifter = {
@@ -43,8 +57,17 @@ export const defaultDrifter: Drifter = {
 		health: { current: 10, max: 12 },
 		energy: { current: 10, max: 12 },
 	},
-	discipline: {},
-	dashes: {},
+	discipline: {
+		combat: { fortune: 18, temperance: 12 },
+		social: { fortune: 18, temperance: 12 },
+		manipulative: { fortune: 18, temperance: 12 },
+		exploration: { fortune: 18, temperance: 12 },
+		survival: { fortune: 18, temperance: 12 },
+	},
+	dashes: {
+		current: 2,
+		max: 2,
+	},
 	conditions: {},
 	equipment: {},
 	advancement: {},

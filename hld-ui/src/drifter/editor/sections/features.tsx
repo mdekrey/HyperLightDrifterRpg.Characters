@@ -1,8 +1,8 @@
 import React from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterFeatures } from "../../rules";
-import { FormSection } from "../FormSection";
-import { ValueInput } from "../ValueInput";
+import { FormSection } from "../components/FormSection";
+import { ValueInput } from "../components/ValueInput";
 
 const drifterClassLens = createLens(
 	(i: DrifterFeatures) => i.drifterClass,
