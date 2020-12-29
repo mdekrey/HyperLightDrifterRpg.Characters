@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ValueInput } from "./ValueInput";
 
 export function NumericInput({
@@ -9,5 +9,27 @@ export function NumericInput({
 	value: number;
 	setValue: (value: number) => void;
 } & Omit<JSX.IntrinsicElements["input"], "value">) {
-	return <ValueInput value={"" + value} setValue={e => setValue(Number(e))} type="number" {...props} />;
+	const [innerValue, setInnerValue] = useState(`${value}`);
+	useEffect(() => setInnerValue(`${value}`), [value, setInnerValue]);
+
+	return (
+		<ValueInput
+			value={innerValue}
+			setValue={maybeSetValue}
+			onBlur={() => updateValue(innerValue)}
+			type="number"
+			{...props}
+		/>
+	);
+
+	function maybeSetValue(e: string, ev: React.ChangeEvent<HTMLInputElement>) {
+		setInnerValue(e);
+		if (ev.target !== document.activeElement) {
+			updateValue(e);
+		}
+	}
+
+	function updateValue(innerValue: string) {
+		setValue(Number(innerValue));
+	}
 }
