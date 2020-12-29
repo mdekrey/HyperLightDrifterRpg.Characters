@@ -1,8 +1,8 @@
 import React from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
-import { DisciplineThresholds, DrifterDiscipline } from "../../rules";
+import { DrifterDiscipline } from "../../rules";
 import { FormSection } from "../components/FormSection";
-import { NumericInput } from "../components/NumericInput";
+import { ThresholdEditor } from "../components/ThresholdEditor";
 
 const combatLens = createLens(
 	(i: DrifterDiscipline) => i.combat,
@@ -25,33 +25,6 @@ const survivalLens = createLens(
 	(i, next) => (i.survival = next)
 );
 
-const fortuneLens = createLens(
-	(i: DisciplineThresholds) => i.fortune,
-	(i, next) => (i.fortune = next)
-);
-const temperanceLens = createLens(
-	(i: DisciplineThresholds) => i.temperance,
-	(i, next) => (i.temperance = next)
-);
-
-const DisciplineThresholdEditor = ({ threshold }: { threshold: Stateful<DisciplineThresholds> }) => {
-	const [fortune, setFortune] = useLens(threshold, fortuneLens);
-	const [temperance, setTemperance] = useLens(threshold, temperanceLens);
-
-	return (
-		<>
-			<FormSection
-				label="Fortune"
-				fields={id => <NumericInput id={id} value={fortune} setValue={setFortune} />}
-			/>
-			<FormSection
-				label="Temperance"
-				fields={id => <NumericInput id={id} value={temperance} setValue={setTemperance} />}
-			/>
-		</>
-	);
-};
-
 export const DisciplineSection = ({ discipline }: { discipline: Stateful<DrifterDiscipline> }) => {
 	const combat = useLens(discipline, combatLens);
 	const social = useLens(discipline, socialLens);
@@ -61,11 +34,11 @@ export const DisciplineSection = ({ discipline }: { discipline: Stateful<Drifter
 
 	return (
 		<>
-			<FormSection label="Combat" fields={id => <DisciplineThresholdEditor threshold={combat} />} />
-			<FormSection label="Social" fields={id => <DisciplineThresholdEditor threshold={social} />} />
-			<FormSection label="Manipulative" fields={id => <DisciplineThresholdEditor threshold={manipulative} />} />
-			<FormSection label="Exploration" fields={id => <DisciplineThresholdEditor threshold={exploration} />} />
-			<FormSection label="Survival" fields={id => <DisciplineThresholdEditor threshold={survival} />} />
+			<FormSection label="Combat" fields={id => <ThresholdEditor threshold={combat} />} />
+			<FormSection label="Social" fields={id => <ThresholdEditor threshold={social} />} />
+			<FormSection label="Manipulative" fields={id => <ThresholdEditor threshold={manipulative} />} />
+			<FormSection label="Exploration" fields={id => <ThresholdEditor threshold={exploration} />} />
+			<FormSection label="Survival" fields={id => <ThresholdEditor threshold={survival} />} />
 		</>
 	);
 };

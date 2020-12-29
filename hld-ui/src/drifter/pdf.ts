@@ -237,6 +237,16 @@ function checkLevels(levelCheckboxes: Array<keyof SheetHLDv5>, value: number) {
 	}, {} as Partial<SheetHLDv5>);
 }
 
+const woeMeter = Array(12)
+	.fill(0)
+	.map((_, i) => `woe-${i < 9 ? "0" : ""}${i + 1}` as keyof SheetHLDv5);
+function checkboxes(levelCheckboxes: Array<keyof SheetHLDv5>, value: number) {
+	return levelCheckboxes.reduce((prev, next, index) => {
+		prev[next] = { value: (index < value) as any };
+		return prev;
+	}, {} as Partial<SheetHLDv5>);
+}
+
 export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 	return {
 		Name: { value: drifter.identity.name },
@@ -279,6 +289,12 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		"DashUpgrade-4-hide 2": {},
 		"DashUpgrade-4-show": {},
 		"DashUpgrade-4-show 2": {},
+
+		"Woe-Fortune": { value: `${drifter.conditions.woeThreshold.fortune}`, generateAppearance: true },
+		"Woe-Temperance": { value: `${drifter.conditions.woeThreshold.temperance}`, generateAppearance: true },
+		...checkboxes(woeMeter, drifter.conditions.woe),
+		Conditions: { value: drifter.conditions.boons },
+		"Conditions 2": { value: drifter.conditions.burdens },
 	};
 }
 
