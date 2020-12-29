@@ -247,12 +247,16 @@ function checkboxes(levelCheckboxes: Array<keyof SheetHLDv5>, value: number) {
 	}, {} as Partial<SheetHLDv5>);
 }
 
+function newlines(v: string) {
+	return v.replace("\r", "").replace("\n", "\r\n");
+}
+
 export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 	return {
 		Name: { value: drifter.identity.name },
 		Pronouns: { value: drifter.identity.pronouns },
-		"Character Description": { value: drifter.identity.description },
-		Mission: { value: drifter.identity.mission },
+		"Character Description": { value: newlines(drifter.identity.description) },
+		Mission: { value: newlines(drifter.identity.mission) },
 		Class: { value: drifter.features.drifterClass },
 		"Specialized Disciplines": { value: drifter.features.speciality },
 		Trait: { value: drifter.features.trait },
@@ -293,8 +297,14 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		"Woe-Fortune": { value: `${drifter.conditions.woeThreshold.fortune}`, generateAppearance: true },
 		"Woe-Temperance": { value: `${drifter.conditions.woeThreshold.temperance}`, generateAppearance: true },
 		...checkboxes(woeMeter, drifter.conditions.woe),
-		Conditions: { value: drifter.conditions.boons },
-		"Conditions 2": { value: drifter.conditions.burdens },
+		Conditions: { value: newlines(drifter.conditions.boons) },
+		"Conditions 2": { value: newlines(drifter.conditions.burdens) },
+
+		Inventory: { value: newlines(drifter.equipment.gear) },
+		"Inventory 2": { value: newlines(drifter.equipment.gear2) },
+		Bits: { value: `${drifter.equipment.bits}`, generateAppearance: true },
+		Ingredients: { value: `${drifter.equipment.ingredients}`, generateAppearance: true },
+		Components: { value: `${drifter.equipment.components}`, generateAppearance: true },
 	};
 }
 

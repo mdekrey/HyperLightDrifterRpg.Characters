@@ -93,6 +93,8 @@ namespace HyperLightDrifterRpg.Characters
                     {"xp-1", new JObject() { { "value", "Yes" } } },
                     {"Pronouns", new JObject() { { "value", "he/him" } } },
                     {"xp-10", new JObject() { { "value", "Yes" } } },
+                    {"Inventory", new JObject() { { "value", "equipment 1\r\nline 2" } } },
+                    {"Inventory 2", new JObject() { { "value", "equipment 2" } } },
                 },
             });
             Assert.NotNull(bytes);

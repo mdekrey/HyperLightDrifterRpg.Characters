@@ -34,7 +34,13 @@ export type Drifter = {
 		boons: string;
 		burdens: string;
 	};
-	equipment: {};
+	equipment: {
+		gear: string;
+		gear2: string;
+		bits: number;
+		ingredients: number;
+		components: number;
+	};
 	advancement: {};
 	abilities: {};
 	corruption: {};
@@ -79,7 +85,13 @@ export const defaultDrifter: Drifter = {
 		boons: "",
 		burdens: "",
 	},
-	equipment: {},
+	equipment: {
+		gear: "",
+		gear2: "",
+		bits: 0,
+		ingredients: 0,
+		components: 0,
+	},
 	advancement: {},
 	abilities: {},
 	corruption: {},

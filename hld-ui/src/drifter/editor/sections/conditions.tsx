@@ -3,8 +3,8 @@ import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterConditions } from "../../rules";
 import { FormSection } from "../components/FormSection";
 import { NumericInput } from "../components/NumericInput";
+import { TextAreaInput } from "../components/TextAreaInput";
 import { ThresholdEditor } from "../components/ThresholdEditor";
-import { ValueInput } from "../components/ValueInput";
 
 const woeLens = createLens(
 	(i: DrifterConditions) => i.woe,
@@ -33,8 +33,8 @@ export const ConditionsSection = ({ conditions }: { conditions: Stateful<Drifter
 		<>
 			<FormSection label="Woe" fields={id => <ThresholdEditor threshold={woeThreshold} />} />
 			<FormSection label="Woe" fields={id => <NumericInput value={woe} setValue={setWoe} />} />
-			<FormSection label="Boons" fields={id => <ValueInput value={boons} setValue={setBoons} />} />
-			<FormSection label="Burdens" fields={id => <ValueInput value={burdens} setValue={setBurdens} />} />
+			<FormSection label="Boons" fields={id => <TextAreaInput value={boons} setValue={setBoons} />} />
+			<FormSection label="Burdens" fields={id => <TextAreaInput value={burdens} setValue={setBurdens} />} />
 		</>
 	);
 };
