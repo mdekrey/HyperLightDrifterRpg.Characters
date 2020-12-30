@@ -73,7 +73,7 @@ namespace HyperLightDrifterRpg.Characters
         [Fact]
         public void FillFields()
         {
-            var (bytes, _) = FillSheetFunction.FillSheet(new FillSheetFunction.CharacterSheet
+            var (bytes, err) = FillSheetFunction.FillSheet(new FillSheetFunction.CharacterSheet
             {
                 Style = "HLD",
                 Version = "v5",
@@ -95,8 +95,22 @@ namespace HyperLightDrifterRpg.Characters
                     {"xp-10", new JObject() { { "value", "Yes" } } },
                     {"Inventory", new JObject() { { "value", "equipment 1\r\nline 2" } } },
                     {"Inventory 2", new JObject() { { "value", "equipment 2" } } },
+                    {"Talents", new JObject() { { "value", "Talent List" } } },
+                    {"Talent-Passive-Effect", new JObject() { { "value", "PB" } } },
+                    {"Talent-Passive-Title", new JObject() { { "value", "PT" } } },
+                    {"Talents 3", new JObject() { { "value", "1B" } } },
+                    {"Talent-1-Title", new JObject() { { "value", "1T" } } },
+                    {"Talents 4", new JObject() { { "value", "2B" } } },
+                    {"Talent-2-Title", new JObject() { { "value", "2T" } } },
+                    {"Talents 5", new JObject() { { "value", "3B" } } },
+                    {"Talent-3-Title", new JObject() { { "value", "3T" } } },
+                    {"Talents 6", new JObject() { { "value", "4B" } } },
+                    {"Talent-4-Title", new JObject() { { "value", "4T" } } },
+                    {"Talents 7", new JObject() { { "value", "DB" } } },
+                    {"Talent-Dash-Title", new JObject() { { "value", "DT" } } },
                 },
             });
+            Assert.Null(err);
             Assert.NotNull(bytes);
 
             using var memoryStream = new MemoryStream(bytes);

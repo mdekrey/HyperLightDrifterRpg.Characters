@@ -16,6 +16,10 @@ export type Drifter = {
 	resources: {
 		health: { current: number; max: number };
 		energy: { current: number; max: number };
+		grit: number;
+		nerve: number;
+		armor: number;
+		resistance: number;
 	};
 	discipline: {
 		combat: Thresholds;
@@ -41,14 +45,37 @@ export type Drifter = {
 		ingredients: number;
 		components: number;
 	};
-	advancement: {};
-	abilities: {};
-	corruption: {};
+	advancement: {
+		xp: number;
+		namedAdvancements: string[];
+		perks: string;
+		vigor: number;
+		agility: number;
+		insight: number;
+		presence: number;
+	};
+	abilities: {
+		talentList: string;
+		passiveTalent: Talent;
+		talent1: Talent;
+		talent2: Talent;
+		talent3: Talent;
+		talent4: Talent;
+		dashTalent: Talent;
+	};
+	corruption: {
+		corruption: number;
+	};
 };
 
 export type Thresholds = {
 	fortune: number;
 	temperance: number;
+};
+
+export type Talent = {
+	title: string;
+	description: string;
 };
 
 export const defaultDrifter: Drifter = {
@@ -67,6 +94,10 @@ export const defaultDrifter: Drifter = {
 	resources: {
 		health: { current: 10, max: 12 },
 		energy: { current: 10, max: 12 },
+		armor: 0,
+		resistance: 0,
+		grit: 1,
+		nerve: 2,
 	},
 	discipline: {
 		combat: { fortune: 18, temperance: 12 },
@@ -92,9 +123,27 @@ export const defaultDrifter: Drifter = {
 		ingredients: 0,
 		components: 0,
 	},
-	advancement: {},
-	abilities: {},
-	corruption: {},
+	advancement: {
+		xp: 0,
+		namedAdvancements: [],
+		perks: "",
+		vigor: 0,
+		agility: 0,
+		insight: 0,
+		presence: 0,
+	},
+	abilities: {
+		talentList: "",
+		dashTalent: { title: "", description: "" },
+		passiveTalent: { title: "", description: "" },
+		talent1: { title: "", description: "" },
+		talent2: { title: "", description: "" },
+		talent3: { title: "", description: "" },
+		talent4: { title: "", description: "" },
+	},
+	corruption: {
+		corruption: 0,
+	},
 };
 
 export type DrifterIdentity = Drifter["identity"];

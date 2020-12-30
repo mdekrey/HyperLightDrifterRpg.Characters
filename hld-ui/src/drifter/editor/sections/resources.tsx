@@ -20,12 +20,32 @@ const energyMaxLens = createLens(
 	(i: DrifterResources) => i.energy.max,
 	(i, next) => (i.energy.max = next)
 );
+const armorLens = createLens(
+	(i: DrifterResources) => i.armor,
+	(i, next) => (i.armor = next)
+);
+const resistanceLens = createLens(
+	(i: DrifterResources) => i.resistance,
+	(i, next) => (i.resistance = next)
+);
+const gritLens = createLens(
+	(i: DrifterResources) => i.grit,
+	(i, next) => (i.grit = next)
+);
+const nerveLens = createLens(
+	(i: DrifterResources) => i.nerve,
+	(i, next) => (i.nerve = next)
+);
 
 export const ResourcesSection = ({ resources }: { resources: Stateful<DrifterResources> }) => {
 	const [healthCurrent, setHealthCurrent] = useLens(resources, healthCurrentLens);
 	const [healthMax, setHealthMax] = useLens(resources, healthMaxLens);
 	const [energyCurrent, setEnergyCurrent] = useLens(resources, energyCurrentLens);
 	const [energyMax, setEnergyMax] = useLens(resources, energyMaxLens);
+	const [armor, setArmor] = useLens(resources, armorLens);
+	const [resistance, setResistance] = useLens(resources, resistanceLens);
+	const [grit, setGrit] = useLens(resources, gritLens);
+	const [nerve, setNerve] = useLens(resources, nerveLens);
 
 	return (
 		<>
@@ -45,6 +65,13 @@ export const ResourcesSection = ({ resources }: { resources: Stateful<DrifterRes
 				label="Energy Max"
 				fields={id => <NumericInput id={id} value={energyMax} setValue={setEnergyMax} />}
 			/>
+			<FormSection label="Armor" fields={id => <NumericInput id={id} value={armor} setValue={setArmor} />} />
+			<FormSection
+				label="Resistance"
+				fields={id => <NumericInput id={id} value={resistance} setValue={setResistance} />}
+			/>
+			<FormSection label="Grit" fields={id => <NumericInput id={id} value={grit} setValue={setGrit} />} />
+			<FormSection label="Nerve" fields={id => <NumericInput id={id} value={nerve} setValue={setNerve} />} />
 		</>
 	);
 };

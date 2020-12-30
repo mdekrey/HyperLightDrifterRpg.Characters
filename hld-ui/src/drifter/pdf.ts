@@ -240,12 +240,42 @@ function checkLevels(levelCheckboxes: Array<keyof SheetHLDv5>, value: number) {
 const woeMeter = Array(12)
 	.fill(0)
 	.map((_, i) => `woe-${i < 9 ? "0" : ""}${i + 1}` as keyof SheetHLDv5);
-function checkboxes(levelCheckboxes: Array<keyof SheetHLDv5>, value: number) {
+function checkboxes(levelCheckboxes: Readonly<Array<keyof SheetHLDv5>>, value: number) {
 	return levelCheckboxes.reduce((prev, next, index) => {
 		prev[next] = { value: (index < value) as any };
 		return prev;
 	}, {} as Partial<SheetHLDv5>);
 }
+
+const xpMeter = [
+	"xp-1",
+	"xp-1-1",
+	"xp-1-2",
+	"xp-1-3",
+	"xp-1-4",
+	"xp0",
+	"xp-10",
+	"xp-11",
+	"xp-12",
+	"xp-13",
+	"xp1",
+	"xp-14",
+	"xp-15",
+	"xp-16",
+	"xp-17",
+	"xp2",
+	"xp-18",
+	"xp-19",
+	"xp-110",
+	"xp-111",
+] as const;
+
+const corruptionMeter = [
+	...Array(11)
+		.fill(0)
+		.map((_, i) => `Corruption-${i + 1}` as keyof SheetHLDv5),
+	"Corruption-1f 12" as const,
+];
 
 function newlines(v: string) {
 	return v.replace("\r", "").replace("\n", "\r\n");
@@ -270,6 +300,10 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		...checkLevels(orderedHealth, drifter.resources.health.current),
 		...checkLevels(orderedEnergyMax, drifter.resources.energy.max),
 		...checkLevels(orderedEnergy, drifter.resources.energy.current),
+		"Armor Value": { value: `${drifter.resources.armor}`, generateAppearance: true },
+		"Resistance Value": { value: `${drifter.resources.resistance}`, generateAppearance: true },
+		"Boost-Grit": { value: `${drifter.resources.grit}`, generateAppearance: true },
+		"Boost-Nerve": { value: `${drifter.resources.nerve}`, generateAppearance: true },
 
 		"Combat-Fortune": { value: `${drifter.discipline.combat.fortune}`, generateAppearance: true },
 		"Combat-Temperance": { value: `${drifter.discipline.combat.temperance}`, generateAppearance: true },
@@ -282,7 +316,7 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		"Survival-Fortune": { value: `${drifter.discipline.survival.fortune}`, generateAppearance: true },
 		"Survival-Temperance": { value: `${drifter.discipline.survival.temperance}`, generateAppearance: true },
 
-		// TODO - do dashes soon
+		// TODO - dashes
 		"Dash-1-fill": {},
 		"Dash-2-fill": {},
 		"Dash-4-background": {},
@@ -305,6 +339,33 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		Bits: { value: `${drifter.equipment.bits}`, generateAppearance: true },
 		Ingredients: { value: `${drifter.equipment.ingredients}`, generateAppearance: true },
 		Components: { value: `${drifter.equipment.components}`, generateAppearance: true },
+
+		...checkboxes(xpMeter, drifter.advancement.xp),
+		"Advancement Tier-1": { value: drifter.advancement.namedAdvancements[0] || "" },
+		"Advancement Tier0": { value: drifter.advancement.namedAdvancements[1] || "" },
+		"Advancement Tier1": { value: drifter.advancement.namedAdvancements[2] || "" },
+		"Advancement Tier2": { value: drifter.advancement.namedAdvancements[3] || "" },
+		"Advancements Perks": { value: newlines(drifter.advancement.perks) },
+		"Att-Vigor": { value: `${drifter.advancement.vigor}`, generateAppearance: true },
+		"Att-Agility": { value: `${drifter.advancement.agility}`, generateAppearance: true },
+		"Att-Insight": { value: `${drifter.advancement.insight}`, generateAppearance: true },
+		"Att-Presence": { value: `${drifter.advancement.presence}`, generateAppearance: true },
+
+		Talents: { value: newlines(drifter.abilities.talentList) },
+		"Talent-Passive-Effect": { value: newlines(drifter.abilities.passiveTalent.description) },
+		"Talent-Passive-Title": { value: drifter.abilities.passiveTalent.title, generateAppearance: true },
+		"Talents 3": { value: newlines(drifter.abilities.talent1.description) },
+		"Talent-1-Title": { value: drifter.abilities.talent1.title, generateAppearance: true },
+		"Talents 4": { value: newlines(drifter.abilities.talent2.description) },
+		"Talent-2-Title": { value: drifter.abilities.talent2.title, generateAppearance: true },
+		"Talents 5": { value: newlines(drifter.abilities.talent3.description) },
+		"Talent-3-Title": { value: drifter.abilities.talent3.title, generateAppearance: true },
+		"Talents 6": { value: newlines(drifter.abilities.talent4.description) },
+		"Talent-4-Title": { value: drifter.abilities.talent4.title, generateAppearance: true },
+		"Talents 7": { value: newlines(drifter.abilities.dashTalent.description) },
+		"Talent-Dash-Title": { value: drifter.abilities.dashTalent.title, generateAppearance: true },
+
+		...checkboxes(corruptionMeter, drifter.corruption.corruption),
 	};
 }
 
