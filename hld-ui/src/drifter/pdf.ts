@@ -317,8 +317,8 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		"Survival-Temperance": { value: `${drifter.discipline.survival.temperance}`, generateAppearance: true },
 
 		// TODO - dashes
-		"Dash-1-fill": {},
-		"Dash-2-fill": {},
+		"Dash-1-fill": { value: drifter.dashes.current >= 1 },
+		"Dash-2-fill": { value: drifter.dashes.current >= 2 },
 		"Dash-4-background": {},
 		"Dash-4-background 2": {},
 		"Dash-4-fill": {},
