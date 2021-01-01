@@ -1,0 +1,38 @@
+.equipment {
+	@apply grid gap-1;
+	grid-template-columns: repeat(6, minmax(0, 1fr));
+	grid-template-areas:
+		"title title title title title title"
+		"gear gear gear gear gear gear"
+		"bits-label bits-input ingredients-label ingredients-input components-label components-input";
+
+	h3 {
+		@apply mb-0;
+		grid-area: title;
+	}
+
+	.gear {
+		grid-area: gear;
+	}
+	.bits-label {
+		@apply text-right;
+		grid-area: bits-label;
+	}
+	.bits-input {
+		grid-area: bits-input;
+	}
+	.ingredients-label {
+		@apply text-right;
+		grid-area: ingredients-label;
+	}
+	.ingredients-input {
+		grid-area: ingredients-input;
+	}
+	.components-label {
+		@apply text-right;
+		grid-area: components-label;
+	}
+	.components-input {
+		grid-area: components-input;
+	}
+}

@@ -4,6 +4,7 @@ import { DrifterEquipment } from "../../rules";
 import { FormSection } from "../components/FormSection";
 import { NumericInput } from "../components/NumericInput";
 import { TextAreaInput } from "../components/TextAreaInput";
+import styles from "./equipment.module.css";
 
 const gearLens = createLens(
 	(i: DrifterEquipment) => i.gear,
@@ -34,11 +35,12 @@ export const EquipmentSection = ({ equipment }: { equipment: Stateful<DrifterEqu
 	const components = useLens(equipment, componentsLens);
 
 	return (
-		<div className="equipment">
-			<div className="paired-editors">
+		<section className={`equipment ${styles.equipment}`}>
+			<h3>Equipment</h3>
+			<div className={`paired-editors ${styles.gear}`}>
 				<FormSection
 					label="Gear"
-					className="left"
+					className="left sr-only"
 					fields={id => <TextAreaInput id={id} value={gear[0]} setValue={gear[1]} />}
 				/>
 				<FormSection
@@ -47,15 +49,35 @@ export const EquipmentSection = ({ equipment }: { equipment: Stateful<DrifterEqu
 					fields={id => <TextAreaInput id={id} value={gear2[0]} setValue={gear2[1]} />}
 				/>
 			</div>
-			<FormSection label="Bits" fields={id => <NumericInput id={id} value={bits[0]} setValue={bits[1]} />} />
+			<FormSection
+				label="Bits"
+				className={styles.bitsLabel}
+				fields={id => <NumericInput id={id} className={styles.bitsInput} value={bits[0]} setValue={bits[1]} />}
+			/>
 			<FormSection
 				label="Ingredients"
-				fields={id => <NumericInput id={id} value={ingredients[0]} setValue={ingredients[1]} />}
+				className={styles.ingredientsLabel}
+				fields={id => (
+					<NumericInput
+						id={id}
+						className={styles.ingredientsInput}
+						value={ingredients[0]}
+						setValue={ingredients[1]}
+					/>
+				)}
 			/>
 			<FormSection
 				label="Components"
-				fields={id => <NumericInput id={id} value={components[0]} setValue={components[1]} />}
+				className={styles.componentsLabel}
+				fields={id => (
+					<NumericInput
+						id={id}
+						className={styles.componentsInput}
+						value={components[0]}
+						setValue={components[1]}
+					/>
+				)}
 			/>
-		</div>
+		</section>
 	);
 };

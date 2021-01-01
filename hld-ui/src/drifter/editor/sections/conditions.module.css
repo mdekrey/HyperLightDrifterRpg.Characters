@@ -1,4 +1,19 @@
 .woe-editor {
 	@apply grid gap-1;
 	grid-template-columns: 8rem minmax(0, 1fr);
+
+	.woe-meter {
+		@apply grid gap-1 justify-center content-center;
+		grid-template-columns: repeat(9, 1rem);
+		grid-template-rows: repeat(3, 1rem);
+		grid-template-areas:
+			". a . b . c . d ."
+			"e . f . . . g . h"
+			". i . j . k . l .";
+
+		.woe-checkbox {
+			transform-origin: center center;
+			transform: rotate(45deg);
+		}
+	}
 }

@@ -6,6 +6,8 @@ import { NumericInput } from "../components/NumericInput";
 import { TextAreaInput } from "../components/TextAreaInput";
 import { ThresholdEditor } from "../components/ThresholdEditor";
 import styles from "./conditions.module.css";
+import { useSyncCheckboxes } from "../../../utils/useSyncCheckboxes";
+import { Checkbox } from "../components/Checkbox";
 
 console.log(styles);
 
@@ -31,6 +33,7 @@ export const ConditionsSection = ({ conditions }: { conditions: Stateful<Drifter
 	const [woe, setWoe] = useLens(conditions, woeLens);
 	const [boons, setBoons] = useLens(conditions, boonsLens);
 	const [burdens, setBurdens] = useLens(conditions, burdensLens);
+	const [individualWoe, woeSetter] = useSyncCheckboxes(woe, setWoe, 12);
 
 	return (
 		<>
@@ -41,6 +44,16 @@ export const ConditionsSection = ({ conditions }: { conditions: Stateful<Drifter
 					className="sr-only"
 					fields={id => <NumericInput id={id} className="sr-only" value={woe} setValue={setWoe} />}
 				/>
+				<div className={styles.woeMeter}>
+					{individualWoe.map((value, index) => (
+						<Checkbox
+							checked={value}
+							setChecked={woeSetter(index)}
+							className={styles.woeCheckbox}
+							style={{ gridArea: String.fromCharCode(97 + index) }}
+						/>
+					))}
+				</div>
 			</div>
 			<div className="conditions-boons paired-editors">
 				<FormSection
