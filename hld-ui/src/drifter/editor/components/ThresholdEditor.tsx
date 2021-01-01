@@ -21,7 +21,7 @@ export const ThresholdEditor = ({ threshold, label }: { threshold: Stateful<Thre
 	return (
 		<section className={styles.thresholdEditor}>
 			<span className={styles.header}>{label}</span>
-			<span className={styles.image}></span>
+			<span className={styles.image}>{/* TODO */}</span>
 			<FormSection
 				label={label + " Fortune"}
 				className="sr-only"
