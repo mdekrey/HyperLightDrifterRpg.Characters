@@ -1,0 +1,7 @@
+.corruption {
+	@apply grid gap-1 justify-center items-center;
+	grid-template-columns: auto repeat(12, 1rem) 1fr;
+	h3 {
+		@apply mb-0;
+	}
+}
