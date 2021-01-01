@@ -47,6 +47,7 @@ export const ConditionsSection = ({ conditions }: { conditions: Stateful<Drifter
 				<div className={styles.woeMeter}>
 					{individualWoe.map((value, index) => (
 						<Checkbox
+							key={index}
 							checked={value}
 							setChecked={woeSetter(index)}
 							className={styles.woeCheckbox}

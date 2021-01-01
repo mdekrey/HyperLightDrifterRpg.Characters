@@ -28,7 +28,12 @@ export const CorruptionSection = ({ corruption }: { corruption: Stateful<Drifter
 			/>
 
 			{individualCorruption.map((value, index) => (
-				<Checkbox checked={value} setChecked={corruptionSetter(index)} className={styles.woeCheckbox} />
+				<Checkbox
+					key={index}
+					checked={value}
+					setChecked={corruptionSetter(index)}
+					className={styles.woeCheckbox}
+				/>
 			))}
 		</section>
 	);
