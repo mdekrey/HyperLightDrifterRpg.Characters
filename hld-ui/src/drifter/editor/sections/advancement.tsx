@@ -5,6 +5,7 @@ import { FormSection } from "../components/FormSection";
 import { NumericInput } from "../components/NumericInput";
 import { TextAreaInput } from "../components/TextAreaInput";
 import { ValueInput } from "../components/ValueInput";
+import styles from "./advancement.module.css";
 
 const xpLens = createLens(
 	(i: DrifterAdvancement) => i.xp,
@@ -61,27 +62,33 @@ export const AdvancementSection = ({ advancement }: { advancement: Stateful<Drif
 
 	return (
 		<>
-			<div className="advancement-xp">
-				<FormSection label="XP" fields={id => <NumericInput value={xp} setValue={setXp} />} />
+			<div className={styles.advancementXp}>
+				<div style={{ gridArea: "xp" }}>
+					<FormSection label="XP" fields={id => <NumericInput id={id} value={xp} setValue={setXp} />} />
+				</div>
 				<FormSection
 					label="Advancement 1"
-					fields={id => <ValueInput value={namedAdvancement0} setValue={setNamedAdvancement0} />}
+					className="sr-only"
+					fields={id => <ValueInput id={id} value={namedAdvancement0} setValue={setNamedAdvancement0} />}
 				/>
 				<FormSection
 					label="Advancement 2"
-					fields={id => <ValueInput value={namedAdvancement1} setValue={setNamedAdvancement1} />}
+					className="sr-only"
+					fields={id => <ValueInput id={id} value={namedAdvancement1} setValue={setNamedAdvancement1} />}
 				/>
 				<FormSection
 					label="Advancement 3"
-					fields={id => <ValueInput value={namedAdvancement2} setValue={setNamedAdvancement2} />}
+					className="sr-only"
+					fields={id => <ValueInput id={id} value={namedAdvancement2} setValue={setNamedAdvancement2} />}
 				/>
 				<FormSection
 					label="Advancement 4"
-					fields={id => <ValueInput value={namedAdvancement3} setValue={setNamedAdvancement3} />}
+					className="sr-only"
+					fields={id => <ValueInput id={id} value={namedAdvancement3} setValue={setNamedAdvancement3} />}
 				/>
 			</div>
 
-			<div className="advancement-perks">
+			<div className="advancement-perks vertical-editor">
 				<FormSection label="Perks" fields={id => <TextAreaInput id={id} value={perks} setValue={setPerks} />} />
 			</div>
 			<div className="advancement-grit">

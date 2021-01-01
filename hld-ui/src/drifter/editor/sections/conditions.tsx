@@ -5,6 +5,9 @@ import { FormSection } from "../components/FormSection";
 import { NumericInput } from "../components/NumericInput";
 import { TextAreaInput } from "../components/TextAreaInput";
 import { ThresholdEditor } from "../components/ThresholdEditor";
+import styles from "./conditions.module.css";
+
+console.log(styles);
 
 const woeLens = createLens(
 	(i: DrifterConditions) => i.woe,
@@ -31,20 +34,24 @@ export const ConditionsSection = ({ conditions }: { conditions: Stateful<Drifter
 
 	return (
 		<>
-			<div className="conditions-woe">
-				<FormSection label="Woe" fields={id => <ThresholdEditor threshold={woeThreshold} />} />
-				<FormSection label="Woe" fields={id => <NumericInput value={woe} setValue={setWoe} />} />
+			<div className={`conditions-woe woe-editor ${styles.woeEditor}`}>
+				<ThresholdEditor label="Woe" threshold={woeThreshold} />
+				<FormSection
+					label="Woe"
+					className="sr-only"
+					fields={id => <NumericInput id={id} className="sr-only" value={woe} setValue={setWoe} />}
+				/>
 			</div>
 			<div className="conditions-boons paired-editors">
 				<FormSection
 					className="left"
 					label="Boons"
-					fields={id => <TextAreaInput value={boons} setValue={setBoons} />}
+					fields={id => <TextAreaInput id={id} value={boons} setValue={setBoons} />}
 				/>
 				<FormSection
 					className="right"
 					label="Burdens"
-					fields={id => <TextAreaInput value={burdens} setValue={setBurdens} />}
+					fields={id => <TextAreaInput id={id} value={burdens} setValue={setBurdens} />}
 				/>
 			</div>
 		</>

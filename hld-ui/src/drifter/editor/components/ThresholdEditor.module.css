@@ -1,0 +1,26 @@
+.threshold-editor {
+	@apply grid gap-1;
+	grid-template-columns: auto minmax(0, 1fr);
+	grid-template-rows: auto auto auto auto;
+	grid-template-areas:
+		"header header"
+		"image fortune"
+		"image ."
+		"image temperance";
+
+	.header {
+		grid-area: header;
+	}
+	.image {
+		grid-area: image;
+		min-height: 4em;
+		min-width: 4em;
+	}
+	.fortune {
+		grid-area: fortune;
+		@apply border-teal;
+	}
+	.temperance {
+		grid-area: temperance;
+	}
+}

@@ -34,11 +34,11 @@ export const DisciplineSection = ({ discipline }: { discipline: Stateful<Drifter
 
 	return (
 		<div className="discipline">
-			<FormSection label="Combat" fields={id => <ThresholdEditor threshold={combat} />} />
-			<FormSection label="Social" fields={id => <ThresholdEditor threshold={social} />} />
-			<FormSection label="Manipulative" fields={id => <ThresholdEditor threshold={manipulative} />} />
-			<FormSection label="Exploration" fields={id => <ThresholdEditor threshold={exploration} />} />
-			<FormSection label="Survival" fields={id => <ThresholdEditor threshold={survival} />} />
+			<ThresholdEditor label="Combat" threshold={combat} />
+			<ThresholdEditor label="Social" threshold={social} />
+			<ThresholdEditor label="Manipulative" threshold={manipulative} />
+			<ThresholdEditor label="Exploration" threshold={exploration} />
+			<ThresholdEditor label="Survival" threshold={survival} />
 		</div>
 	);
 };

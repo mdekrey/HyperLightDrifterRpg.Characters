@@ -1,0 +1,8 @@
+.advancement-xp {
+	@apply grid gap-1;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+	grid-template-rows: auto auto;
+	grid-template-areas:
+		"xp xp xp xp"
+		"advancement-1 advancement-2 advancement-3 advancement-4";
+}

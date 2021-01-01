@@ -16,7 +16,7 @@ export const CorruptionSection = ({ corruption }: { corruption: Stateful<Drifter
 		<div className="corruption">
 			<FormSection
 				label="Corruption"
-				fields={id => <NumericInput value={corruptionValue} setValue={setCorruption} />}
+				fields={id => <NumericInput id={id} value={corruptionValue} setValue={setCorruption} />}
 			/>
 		</div>
 	);

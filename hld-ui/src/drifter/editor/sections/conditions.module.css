@@ -1,0 +1,4 @@
+.woe-editor {
+	@apply grid gap-1;
+	grid-template-columns: 8rem minmax(0, 1fr);
+}

@@ -8,6 +8,9 @@ export function TextAreaInput({
 }: {
 	setValue: (value: string) => void;
 } & JSX.IntrinsicElements["textarea"]) {
+	if (process.env.NODE_ENV === "development" && !props.id) {
+		console.warn("no id provided");
+	}
 	return (
 		<textarea
 			value={value}

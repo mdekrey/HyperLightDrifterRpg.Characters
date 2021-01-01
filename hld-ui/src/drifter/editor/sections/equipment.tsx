@@ -35,16 +35,26 @@ export const EquipmentSection = ({ equipment }: { equipment: Stateful<DrifterEqu
 
 	return (
 		<div className="equipment">
-			<FormSection label="Gear" fields={id => <TextAreaInput value={gear[0]} setValue={gear[1]} />} />
-			<FormSection label="Gear" fields={id => <TextAreaInput value={gear2[0]} setValue={gear2[1]} />} />
-			<FormSection label="Bits" fields={id => <NumericInput value={bits[0]} setValue={bits[1]} />} />
+			<div className="paired-editors">
+				<FormSection
+					label="Gear"
+					className="left"
+					fields={id => <TextAreaInput id={id} value={gear[0]} setValue={gear[1]} />}
+				/>
+				<FormSection
+					label="Gear"
+					className="right sr-only"
+					fields={id => <TextAreaInput id={id} value={gear2[0]} setValue={gear2[1]} />}
+				/>
+			</div>
+			<FormSection label="Bits" fields={id => <NumericInput id={id} value={bits[0]} setValue={bits[1]} />} />
 			<FormSection
 				label="Ingredients"
-				fields={id => <NumericInput value={ingredients[0]} setValue={ingredients[1]} />}
+				fields={id => <NumericInput id={id} value={ingredients[0]} setValue={ingredients[1]} />}
 			/>
 			<FormSection
 				label="Components"
-				fields={id => <NumericInput value={components[0]} setValue={components[1]} />}
+				fields={id => <NumericInput id={id} value={components[0]} setValue={components[1]} />}
 			/>
 		</div>
 	);

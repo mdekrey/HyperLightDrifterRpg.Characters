@@ -8,6 +8,9 @@ export function ValueInput({
 }: {
 	setValue: (value: string, event: React.ChangeEvent<HTMLInputElement>) => void;
 } & JSX.IntrinsicElements["input"]) {
+	if (process.env.NODE_ENV === "development" && !props.id) {
+		console.warn("no id provided");
+	}
 	return (
 		<input
 			type="text"
