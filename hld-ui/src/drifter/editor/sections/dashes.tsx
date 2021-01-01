@@ -18,13 +18,13 @@ export const DashesSection = ({ dashes }: { dashes: Stateful<DrifterDashes> }) =
 	const [max, internalSetMax] = useLens(dashes, maxLens);
 
 	return (
-		<>
+		<div className="dashes">
 			<FormSection
 				label="Current Dashes"
 				fields={id => <NumericInput id={id} value={current} setValue={setCurrent} />}
 			/>
 			<FormSection label="Max Dashes" fields={id => <NumericInput id={id} value={max} setValue={setMax} />} />
-		</>
+		</div>
 	);
 
 	function setCurrent(d: number) {

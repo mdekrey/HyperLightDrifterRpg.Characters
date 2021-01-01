@@ -12,7 +12,7 @@ export function TextAreaInput({
 		<textarea
 			value={value}
 			onChange={e => setValue(e.currentTarget.value)}
-			className={`bg-black border border-white flex-1 m-2 ${className || ""}`}
+			className={`bg-white text-black border-2 border-pink flex-1 ${className || ""}`}
 			{...props}
 		/>
 	);

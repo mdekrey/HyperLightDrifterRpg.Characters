@@ -31,10 +31,22 @@ export const ConditionsSection = ({ conditions }: { conditions: Stateful<Drifter
 
 	return (
 		<>
-			<FormSection label="Woe" fields={id => <ThresholdEditor threshold={woeThreshold} />} />
-			<FormSection label="Woe" fields={id => <NumericInput value={woe} setValue={setWoe} />} />
-			<FormSection label="Boons" fields={id => <TextAreaInput value={boons} setValue={setBoons} />} />
-			<FormSection label="Burdens" fields={id => <TextAreaInput value={burdens} setValue={setBurdens} />} />
+			<div className="conditions-woe">
+				<FormSection label="Woe" fields={id => <ThresholdEditor threshold={woeThreshold} />} />
+				<FormSection label="Woe" fields={id => <NumericInput value={woe} setValue={setWoe} />} />
+			</div>
+			<div className="conditions-boons paired-editors">
+				<FormSection
+					className="left"
+					label="Boons"
+					fields={id => <TextAreaInput value={boons} setValue={setBoons} />}
+				/>
+				<FormSection
+					className="right"
+					label="Burdens"
+					fields={id => <TextAreaInput value={burdens} setValue={setBurdens} />}
+				/>
+			</div>
 		</>
 	);
 };

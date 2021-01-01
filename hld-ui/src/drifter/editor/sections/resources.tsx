@@ -49,29 +49,39 @@ export const ResourcesSection = ({ resources }: { resources: Stateful<DrifterRes
 
 	return (
 		<>
-			<FormSection
-				label="Current Health"
-				fields={id => <NumericInput id={id} value={healthCurrent} setValue={setHealthCurrent} />}
-			/>
-			<FormSection
-				label="Health Max"
-				fields={id => <NumericInput id={id} value={healthMax} setValue={setHealthMax} />}
-			/>
-			<FormSection
-				label="Current Energy"
-				fields={id => <NumericInput id={id} value={energyCurrent} setValue={setEnergyCurrent} />}
-			/>
-			<FormSection
-				label="Energy Max"
-				fields={id => <NumericInput id={id} value={energyMax} setValue={setEnergyMax} />}
-			/>
-			<FormSection label="Armor" fields={id => <NumericInput id={id} value={armor} setValue={setArmor} />} />
-			<FormSection
-				label="Resistance"
-				fields={id => <NumericInput id={id} value={resistance} setValue={setResistance} />}
-			/>
-			<FormSection label="Grit" fields={id => <NumericInput id={id} value={grit} setValue={setGrit} />} />
-			<FormSection label="Nerve" fields={id => <NumericInput id={id} value={nerve} setValue={setNerve} />} />
+			<div className="resource-health">
+				<FormSection
+					label="Current Health"
+					fields={id => <NumericInput id={id} value={healthCurrent} setValue={setHealthCurrent} />}
+				/>
+				<FormSection
+					label="Health Max"
+					fields={id => <NumericInput id={id} value={healthMax} setValue={setHealthMax} />}
+				/>
+			</div>
+			<div className="resource-energy">
+				<FormSection
+					label="Current Energy"
+					fields={id => <NumericInput id={id} value={energyCurrent} setValue={setEnergyCurrent} />}
+				/>
+				<FormSection
+					label="Energy Max"
+					fields={id => <NumericInput id={id} value={energyMax} setValue={setEnergyMax} />}
+				/>
+			</div>
+			<div className="resource-armor">
+				<FormSection label="Armor" fields={id => <NumericInput id={id} value={armor} setValue={setArmor} />} />
+			</div>
+			<div className="resource-resistance">
+				<FormSection
+					label="Resistance"
+					fields={id => <NumericInput id={id} value={resistance} setValue={setResistance} />}
+				/>
+			</div>
+			<div className="resource-boost">
+				<FormSection label="Grit" fields={id => <NumericInput id={id} value={grit} setValue={setGrit} />} />
+				<FormSection label="Nerve" fields={id => <NumericInput id={id} value={nerve} setValue={setNerve} />} />
+			</div>
 		</>
 	);
 };

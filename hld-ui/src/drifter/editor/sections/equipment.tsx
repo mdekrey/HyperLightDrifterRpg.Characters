@@ -34,7 +34,7 @@ export const EquipmentSection = ({ equipment }: { equipment: Stateful<DrifterEqu
 	const components = useLens(equipment, componentsLens);
 
 	return (
-		<>
+		<div className="equipment">
 			<FormSection label="Gear" fields={id => <TextAreaInput value={gear[0]} setValue={gear[1]} />} />
 			<FormSection label="Gear" fields={id => <TextAreaInput value={gear2[0]} setValue={gear2[1]} />} />
 			<FormSection label="Bits" fields={id => <NumericInput value={bits[0]} setValue={bits[1]} />} />
@@ -46,6 +46,6 @@ export const EquipmentSection = ({ equipment }: { equipment: Stateful<DrifterEqu
 				label="Components"
 				fields={id => <NumericInput value={components[0]} setValue={components[1]} />}
 			/>
-		</>
+		</div>
 	);
 };

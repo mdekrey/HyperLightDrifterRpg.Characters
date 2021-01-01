@@ -61,38 +61,46 @@ export const AdvancementSection = ({ advancement }: { advancement: Stateful<Drif
 
 	return (
 		<>
-			<FormSection label="XP" fields={id => <NumericInput value={xp} setValue={setXp} />} />
-			<FormSection
-				label="Advancement 1"
-				fields={id => <ValueInput value={namedAdvancement0} setValue={setNamedAdvancement0} />}
-			/>
-			<FormSection
-				label="Advancement 2"
-				fields={id => <ValueInput value={namedAdvancement1} setValue={setNamedAdvancement1} />}
-			/>
-			<FormSection
-				label="Advancement 3"
-				fields={id => <ValueInput value={namedAdvancement2} setValue={setNamedAdvancement2} />}
-			/>
-			<FormSection
-				label="Advancement 4"
-				fields={id => <ValueInput value={namedAdvancement3} setValue={setNamedAdvancement3} />}
-			/>
+			<div className="advancement-xp">
+				<FormSection label="XP" fields={id => <NumericInput value={xp} setValue={setXp} />} />
+				<FormSection
+					label="Advancement 1"
+					fields={id => <ValueInput value={namedAdvancement0} setValue={setNamedAdvancement0} />}
+				/>
+				<FormSection
+					label="Advancement 2"
+					fields={id => <ValueInput value={namedAdvancement1} setValue={setNamedAdvancement1} />}
+				/>
+				<FormSection
+					label="Advancement 3"
+					fields={id => <ValueInput value={namedAdvancement2} setValue={setNamedAdvancement2} />}
+				/>
+				<FormSection
+					label="Advancement 4"
+					fields={id => <ValueInput value={namedAdvancement3} setValue={setNamedAdvancement3} />}
+				/>
+			</div>
 
-			<FormSection label="Perks" fields={id => <TextAreaInput id={id} value={perks} setValue={setPerks} />} />
-			<FormSection label="Vigor" fields={id => <NumericInput id={id} value={vigor} setValue={setVigor} />} />
-			<FormSection
-				label="Agility"
-				fields={id => <NumericInput id={id} value={agility} setValue={setAgility} />}
-			/>
-			<FormSection
-				label="Insight"
-				fields={id => <NumericInput id={id} value={insight} setValue={setInsight} />}
-			/>
-			<FormSection
-				label="Presence"
-				fields={id => <NumericInput id={id} value={presence} setValue={setPresence} />}
-			/>
+			<div className="advancement-perks">
+				<FormSection label="Perks" fields={id => <TextAreaInput id={id} value={perks} setValue={setPerks} />} />
+			</div>
+			<div className="advancement-grit">
+				<FormSection label="Vigor" fields={id => <NumericInput id={id} value={vigor} setValue={setVigor} />} />
+				<FormSection
+					label="Agility"
+					fields={id => <NumericInput id={id} value={agility} setValue={setAgility} />}
+				/>
+			</div>
+			<div className="advancement-nerve">
+				<FormSection
+					label="Insight"
+					fields={id => <NumericInput id={id} value={insight} setValue={setInsight} />}
+				/>
+				<FormSection
+					label="Presence"
+					fields={id => <NumericInput id={id} value={presence} setValue={setPresence} />}
+				/>
+			</div>
 		</>
 	);
 };

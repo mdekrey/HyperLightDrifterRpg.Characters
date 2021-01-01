@@ -29,16 +29,30 @@ export const FeaturesSection = ({ features }: { features: Stateful<DrifterFeatur
 
 	return (
 		<>
-			<FormSection
-				label="Class"
-				fields={id => <ValueInput id={id} value={drifterClass} setValue={setDrifterClass} />}
-			/>
-			<FormSection
-				label="Speciality"
-				fields={id => <ValueInput id={id} value={speciality} setValue={setSpeciality} />}
-			/>
-			<FormSection label="Trait" fields={id => <ValueInput id={id} value={trait} setValue={setTrait} />} />
-			<FormSection label="Knack" fields={id => <ValueInput id={id} value={knack} setValue={setKnack} />} />
+			<div className="features-class paired-editors">
+				<FormSection
+					className="left"
+					label="Class"
+					fields={id => <ValueInput id={id} value={drifterClass} setValue={setDrifterClass} />}
+				/>
+				<FormSection
+					className="right"
+					label="Speciality"
+					fields={id => <ValueInput id={id} value={speciality} setValue={setSpeciality} />}
+				/>
+			</div>
+			<div className="features-trait paired-editors">
+				<FormSection
+					className="left"
+					label="Trait"
+					fields={id => <ValueInput id={id} value={trait} setValue={setTrait} />}
+				/>
+				<FormSection
+					className="right"
+					label="Knack"
+					fields={id => <ValueInput id={id} value={knack} setValue={setKnack} />}
+				/>
+			</div>
 		</>
 	);
 };

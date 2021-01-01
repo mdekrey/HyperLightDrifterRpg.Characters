@@ -13,7 +13,7 @@ export function ValueInput({
 			type="text"
 			value={value}
 			onChange={e => setValue(e.currentTarget.value, e)}
-			className={`bg-black border border-white flex-1 m-2 ${className || ""}`}
+			className={`bg-white text-black border-pink border-2 ${className || ""}`}
 			{...props}
 		/>
 	);

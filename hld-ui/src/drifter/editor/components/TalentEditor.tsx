@@ -14,15 +14,15 @@ export const descriptionLens = createLens(
 	(i, next) => (i.description = next)
 );
 
-export const TalentEditor = ({ talent }: { talent: Stateful<Talent> }) => {
+export const TalentEditor = ({ talent, label }: { talent: Stateful<Talent>; label: string }) => {
 	const [title, setTitle] = useLens(talent, titleLens);
 	const [description, setDescription] = useLens(talent, descriptionLens);
 
 	return (
 		<>
-			<FormSection label="Title" fields={id => <ValueInput id={id} value={title} setValue={setTitle} />} />
+			<FormSection label={label} fields={id => <ValueInput id={id} value={title} setValue={setTitle} />} />
 			<FormSection
-				label="Description"
+				label={label + " Description"}
 				fields={id => <TextAreaInput id={id} value={description} setValue={setDescription} />}
 			/>
 		</>

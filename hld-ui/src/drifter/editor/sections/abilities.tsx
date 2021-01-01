@@ -45,13 +45,30 @@ export const AbilitiesSection = ({ abilities }: { abilities: Stateful<DrifterAbi
 
 	return (
 		<>
-			<FormSection label="Talents" fields={id => <TextAreaInput value={talentList} setValue={setTalentList} />} />
-			<FormSection label="Passive" fields={id => <TalentEditor talent={passiveTalent} />} />
-			<FormSection label="Dash Talent" fields={id => <TalentEditor talent={dashTalent} />} />
-			<FormSection label="Talent 1" fields={id => <TalentEditor talent={talent1} />} />
-			<FormSection label="Talent 2" fields={id => <TalentEditor talent={talent2} />} />
-			<FormSection label="Talent 3" fields={id => <TalentEditor talent={talent3} />} />
-			<FormSection label="Talent 4" fields={id => <TalentEditor talent={talent4} />} />
+			<div className="talents-list vertical-editor">
+				<FormSection
+					label="Talents"
+					fields={id => <TextAreaInput id={id} value={talentList} setValue={setTalentList} />}
+				/>
+			</div>
+			<div className="talents-passive vertical-editor">
+				<TalentEditor label="Passive" talent={passiveTalent} />
+			</div>
+			<div className="talent-dash vertical-editor">
+				<TalentEditor label="Dash Talent" talent={dashTalent} />
+			</div>
+			<div className="talent-1 vertical-editor">
+				<TalentEditor label="Talent 1" talent={talent1} />
+			</div>
+			<div className="talent-2 vertical-editor">
+				<TalentEditor label="Talent 2" talent={talent2} />
+			</div>
+			<div className="talent-3 vertical-editor">
+				<TalentEditor label="Talent 3" talent={talent3} />
+			</div>
+			<div className="talent-4 vertical-editor">
+				<TalentEditor label="Talent 4" talent={talent4} />
+			</div>
 		</>
 	);
 };

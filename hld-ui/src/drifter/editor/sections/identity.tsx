@@ -30,19 +30,31 @@ export const IdentitySection = ({ identity }: { identity: Stateful<DrifterIdenti
 
 	return (
 		<>
-			<FormSection label="Name" fields={id => <ValueInput id={id} value={name} setValue={setName} />} />
-			<FormSection
-				label="Pronouns"
-				fields={id => <ValueInput id={id} value={pronouns} setValue={setPronouns} />}
-			/>
-			<FormSection
-				label="Description"
-				fields={id => <TextAreaInput id={id} value={description} setValue={setDescription} />}
-			/>
-			<FormSection
-				label="Mission"
-				fields={id => <TextAreaInput id={id} value={mission} setValue={setMission} />}
-			/>
+			<div className="identity-portrait"></div>
+			<div className="identity-name paired-editors">
+				<FormSection
+					className="left"
+					label="Name"
+					fields={id => <ValueInput id={id} value={name} setValue={setName} />}
+				/>
+				<FormSection
+					className="right"
+					label="Pronouns"
+					fields={id => <ValueInput id={id} value={pronouns} setValue={setPronouns} />}
+				/>
+			</div>
+			<div className="identity-description vertical-editor">
+				<FormSection
+					label="Description"
+					fields={id => <TextAreaInput id={id} value={description} setValue={setDescription} />}
+				/>
+			</div>
+			<div className="identity-mission vertical-editor">
+				<FormSection
+					label="Mission"
+					fields={id => <TextAreaInput id={id} value={mission} setValue={setMission} />}
+				/>
+			</div>
 		</>
 	);
 };

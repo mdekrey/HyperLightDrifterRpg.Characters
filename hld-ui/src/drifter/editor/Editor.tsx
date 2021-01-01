@@ -39,7 +39,7 @@ export function Editor({ drifter, setDrifter }: { drifter: Readonly<Drifter>; se
 	const corruption = useLens([drifter, setDrifter], corruptionLens);
 
 	return (
-		<>
+		<div className="hld-character">
 			<IdentitySection identity={identity} />
 			<FeaturesSection features={features} />
 			<ResourcesSection resources={resources} />
@@ -50,6 +50,6 @@ export function Editor({ drifter, setDrifter }: { drifter: Readonly<Drifter>; se
 			<AdvancementSection advancement={advancement} />
 			<AbilitiesSection abilities={abilities} />
 			<CorruptionSection corruption={corruption} />
-		</>
+		</div>
 	);
 }

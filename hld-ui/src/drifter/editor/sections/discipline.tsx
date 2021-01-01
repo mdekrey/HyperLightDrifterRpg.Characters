@@ -33,12 +33,12 @@ export const DisciplineSection = ({ discipline }: { discipline: Stateful<Drifter
 	const survival = useLens(discipline, survivalLens);
 
 	return (
-		<>
+		<div className="discipline">
 			<FormSection label="Combat" fields={id => <ThresholdEditor threshold={combat} />} />
 			<FormSection label="Social" fields={id => <ThresholdEditor threshold={social} />} />
 			<FormSection label="Manipulative" fields={id => <ThresholdEditor threshold={manipulative} />} />
 			<FormSection label="Exploration" fields={id => <ThresholdEditor threshold={exploration} />} />
 			<FormSection label="Survival" fields={id => <ThresholdEditor threshold={survival} />} />
-		</>
+		</div>
 	);
 };

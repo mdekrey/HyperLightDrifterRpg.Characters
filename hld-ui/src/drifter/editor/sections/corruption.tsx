@@ -13,11 +13,11 @@ export const CorruptionSection = ({ corruption }: { corruption: Stateful<Drifter
 	const [corruptionValue, setCorruption] = useLens(corruption, corruptionLens);
 
 	return (
-		<>
+		<div className="corruption">
 			<FormSection
 				label="Corruption"
 				fields={id => <NumericInput value={corruptionValue} setValue={setCorruption} />}
 			/>
-		</>
+		</div>
 	);
 };
