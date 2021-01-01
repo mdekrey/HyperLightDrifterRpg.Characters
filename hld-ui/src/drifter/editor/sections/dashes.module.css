@@ -24,27 +24,30 @@
 	}
 }
 .dash {
-	@apply border-white border-2 h-20 relative;
+	@apply border-white border-2 h-20 grid justify-items-center justify-center content-center items-center;
+	grid-template-rows: 1fr 3rem 1fr;
+	grid-template-areas: "upgrade" "dash" ".";
 
 	.dash-checkbox-container {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		/* transform: scale(1.5, 3); */
+		grid-area: dash;
 	}
 	.dash-checkbox {
 		transform-origin: center center;
-		transform: translate(-50%, -75%) scale(1.25, 2.5) rotate(45deg);
+		transform: scale(1.25, 2.5) rotate(45deg);
 	}
 
 	.dash-checkbox-upgrade-container {
-		position: absolute;
-		top: 0%;
-		left: 50%;
-		/* transform: scale(1.5, 3); */
+		grid-area: upgrade;
+		margin-top: -0.75rem;
 	}
 	.dash-checkbox-upgrade {
 		transform-origin: center center;
-		transform: translate(-50%, -50%) rotate(45deg);
+		transform: rotate(45deg);
+	}
+
+	.dash-checkbox-upgrade-container + .dash-checkbox-container {
+		.dash-checkbox {
+			transform: translate(0, 0.25rem) scale(1, 2) rotate(45deg);
+		}
 	}
 }
