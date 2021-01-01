@@ -24,7 +24,7 @@ export function NumericInput({
 
 	function maybeSetValue(e: string, ev: React.ChangeEvent<HTMLInputElement>) {
 		setInnerValue(e);
-		if (ev.target !== document.activeElement) {
+		if (ev.target !== document.activeElement || `${Number(e)}` === e) {
 			updateValue(e);
 		}
 	}

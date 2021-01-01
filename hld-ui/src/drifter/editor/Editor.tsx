@@ -25,6 +25,7 @@ import {
 	corruptionLens,
 } from "../rules";
 import { Setter, useLens } from "../../utils/useLens";
+import styles from "./Editor.module.css";
 
 export function Editor({ drifter, setDrifter }: { drifter: Readonly<Drifter>; setDrifter: Setter<Drifter> }) {
 	const identity = useLens([drifter, setDrifter], identityLens);
@@ -39,7 +40,7 @@ export function Editor({ drifter, setDrifter }: { drifter: Readonly<Drifter>; se
 	const corruption = useLens([drifter, setDrifter], corruptionLens);
 
 	return (
-		<div className="hld-character">
+		<div className={styles.hldCharacter}>
 			<IdentitySection identity={identity} />
 			<FeaturesSection features={features} />
 			<ResourcesSection resources={resources} />

@@ -8,6 +8,7 @@
 		"advancement-1 advancement-2 advancement-3 advancement-4";
 
 	h3 {
+		@apply mb-0;
 		grid-area: title;
 	}
 }

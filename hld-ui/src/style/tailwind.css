@@ -49,110 +49,16 @@ main {
 	}
 }
 
-.hld-character {
-	@apply grid gap-1 max-w-full;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-	grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
-	grid-template-areas:
-		"identity-portrait identity-name identity-name corruption corruption corruption"
-		"identity-portrait identity-name identity-name resource-resistance resource-armor discipline"
-		"identity-portrait features-class features-class resource-resistance resource-armor discipline"
-		"identity-portrait features-class features-class resource-health resource-health discipline"
-		"identity-portrait features-trait features-trait resource-health resource-health discipline"
-		"identity-portrait features-trait features-trait resource-energy resource-energy discipline"
-		"identity-portrait advancement-xp advancement-xp resource-energy resource-energy discipline"
-		"identity-mission advancement-xp advancement-xp resource-energy resource-energy discipline"
-		"identity-mission advancement-xp advancement-xp resource-boost resource-boost discipline"
-		"identity-mission advancement-perks advancement-perks dashes dashes discipline"
-		"identity-description advancement-perks advancement-perks dashes dashes discipline"
-		"identity-description advancement-grit advancement-nerve conditions-woe conditions-woe discipline"
-		"talents-list equipment equipment conditions-boons conditions-boons discipline"
-		"talents-passive talent-1 talent-2 talent-3 talent-4 talent-dash";
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
 
-	.identity-portrait {
-		grid-area: identity-portrait;
-	}
-	.identity-name {
-		grid-area: identity-name;
-	}
-	.identity-description {
-		grid-area: identity-description;
-	}
-	.identity-mission {
-		grid-area: identity-mission;
-	}
-	.features-class {
-		grid-area: features-class;
-	}
-	.features-trait {
-		grid-area: features-trait;
-	}
-	.resource-armor {
-		grid-area: resource-armor;
-	}
-	.resource-boost {
-		grid-area: resource-boost;
-	}
-	.resource-energy {
-		grid-area: resource-energy;
-	}
-	.resource-health {
-		grid-area: resource-health;
-	}
-	.resource-resistance {
-		grid-area: resource-resistance;
-	}
-	.advancement-grit {
-		grid-area: advancement-grit;
-	}
-	.advancement-nerve {
-		grid-area: advancement-nerve;
-	}
-	.advancement-perks {
-		grid-area: advancement-perks;
-	}
-	.advancement-xp {
-		grid-area: advancement-xp;
-	}
-	.conditions-boons {
-		grid-area: conditions-boons;
-	}
-	.corruption {
-		grid-area: corruption;
-	}
-	.dashes {
-		grid-area: dashes;
-	}
-	.discipline {
-		grid-area: discipline;
-	}
-	.equipment {
-		grid-area: equipment;
-	}
-	.talent-1 {
-		grid-area: talent-1;
-	}
-	.talent-2 {
-		grid-area: talent-2;
-	}
-	.talent-3 {
-		grid-area: talent-3;
-	}
-	.talent-4 {
-		grid-area: talent-4;
-	}
-	.talent-dash {
-		grid-area: talent-dash;
-	}
-	.talents-list {
-		grid-area: talents-list;
-	}
-	.talents-passive {
-		grid-area: talents-passive;
-	}
-	.conditions-woe {
-		grid-area: conditions-woe;
-	}
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
 }
 
 .paired-editors {

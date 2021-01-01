@@ -1,0 +1,61 @@
+.resource-meter {
+	@apply grid;
+	grid-template-columns: 1fr auto auto 1rem 3rem;
+	grid-template-rows: repeat(3, auto);
+	grid-template-areas:
+		"header header header header header"
+		"icon meter meter current current"
+		". . max-label max-label max";
+	margin-bottom: -1em;
+
+	h3 {
+		@apply mb-0;
+		grid-area: header;
+	}
+
+	.meter {
+		grid-area: meter;
+		@apply grid gap-px text-xs;
+		grid-template-columns: repeat(12, 1.5em);
+		grid-template-rows: repeat(2, 1.5em);
+	}
+
+	.current {
+		grid-area: current;
+		@apply text-xl border-teal-pale text-center;
+	}
+
+	.max-label {
+		grid-area: max-label;
+		@apply mr-1 text-right;
+	}
+
+	.max {
+		grid-area: max;
+		@apply border-teal-pale text-center;
+	}
+}
+
+.reverse {
+	@apply grid gap-1 justify-center content-center;
+	grid-template-columns: repeat(2, auto);
+	grid-template-areas: "input label";
+	label {
+		grid-area: label;
+	}
+	input {
+		@apply w-12 text-center;
+		grid-area: input;
+	}
+}
+
+.resourceBoost {
+	@apply grid gap-1 content-center;
+	grid-template-areas:
+		"header header"
+		"grit nerve";
+	h3 {
+		@apply mb-0;
+		grid-area: header;
+	}
+}
