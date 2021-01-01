@@ -67,10 +67,12 @@ function IndexPage() {
 }
 
 function downloadDrifterPdf(drifter: Readonly<Drifter>) {
+	const pdfFields = drifterToPdf(drifter);
+	console.log(pdfFields);
 	return ajax({
 		method: "POST",
 		url: pdfEndpoint,
-		body: { fields: drifterToPdf(drifter), version: "v5", style: "HLD" },
+		body: { fields: pdfFields, version: "v5", style: "HLD" },
 		headers: { "Content-Type": "application/json" },
 		responseType: "blob",
 	}).pipe(

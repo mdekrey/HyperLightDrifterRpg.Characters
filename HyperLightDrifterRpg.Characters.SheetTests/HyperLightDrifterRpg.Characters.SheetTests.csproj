@@ -9,11 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="filled.pdf" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="filled.pdf" />
+    <EmbeddedResource Include="*.pdf" />
   </ItemGroup>
 
   <ItemGroup>

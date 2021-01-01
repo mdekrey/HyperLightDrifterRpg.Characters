@@ -316,17 +316,18 @@ export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 		"Survival-Fortune": { value: `${drifter.discipline.survival.fortune}`, generateAppearance: true },
 		"Survival-Temperance": { value: `${drifter.discipline.survival.temperance}`, generateAppearance: true },
 
-		// TODO - dashes
+		// TODO - current dashes
 		"Dash-1-fill": { value: drifter.dashes.current >= 1 },
 		"Dash-2-fill": { value: drifter.dashes.current >= 2 },
-		"Dash-4-background": {},
-		"Dash-4-background 2": {},
-		"Dash-4-fill": {},
-		"Dash-4-fill 2": {},
-		"DashUpgrade-4-hide": {},
-		"DashUpgrade-4-hide 2": {},
-		"DashUpgrade-4-show": {},
-		"DashUpgrade-4-show 2": {},
+		"DashUpgrade-4-show": { visible: drifter.dashes.max >= 4 ? 1 : false },
+		"Dash-4-background": { visible: drifter.dashes.max >= 4 ? false : true },
+		// "Dash-4-fill": { },
+		"DashUpgrade-4-hide": { value: drifter.dashes.max >= 4, visible: drifter.dashes.max >= 4 ? false : true },
+
+		"DashUpgrade-4-show 2": { visible: drifter.dashes.max >= 3 ? 1 : false },
+		"Dash-4-background 2": { visible: drifter.dashes.max >= 3 ? false : true },
+		// "Dash-4-fill 2": { },
+		"DashUpgrade-4-hide 2": { value: drifter.dashes.max >= 3, visible: drifter.dashes.max >= 3 ? false : true },
 
 		"Woe-Fortune": { value: `${drifter.conditions.woeThreshold.fortune}`, generateAppearance: true },
 		"Woe-Temperance": { value: `${drifter.conditions.woeThreshold.temperance}`, generateAppearance: true },
