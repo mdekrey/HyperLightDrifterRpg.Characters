@@ -1,11 +1,12 @@
 .label {
-	@apply cursor-pointer;
+	@apply cursor-pointer inline-block;
 	height: 1em;
+	width: 1em;
 
 	input + .visible-checkbox {
 		@apply bg-black border-pink border-2 inline-block;
-		height: 1em;
-		width: 1em;
+		height: 100%;
+		width: 100%;
 	}
 
 	input:checked + .visible-checkbox {

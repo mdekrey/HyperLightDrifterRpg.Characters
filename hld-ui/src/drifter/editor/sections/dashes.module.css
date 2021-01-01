@@ -1,0 +1,50 @@
+.dashes {
+	@apply grid gap-1;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: auto auto;
+	grid-template-areas:
+		"title title title title title"
+		"icon dash-1 dash-2 dash-3 dash-4";
+
+	h3 {
+		@apply mb-0;
+		grid-area: title;
+	}
+	.dash-1 {
+		grid-area: dash-1;
+	}
+	.dash-2 {
+		grid-area: dash-2;
+	}
+	.dash-3 {
+		grid-area: dash-3;
+	}
+	.dash-4 {
+		grid-area: dash-4;
+	}
+}
+.dash {
+	@apply border-white border-2 h-20 relative;
+
+	.dash-checkbox-container {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		/* transform: scale(1.5, 3); */
+	}
+	.dash-checkbox {
+		transform-origin: center center;
+		transform: translate(-50%, -75%) scale(1.25, 2.5) rotate(45deg);
+	}
+
+	.dash-checkbox-upgrade-container {
+		position: absolute;
+		top: 0%;
+		left: 50%;
+		/* transform: scale(1.5, 3); */
+	}
+	.dash-checkbox-upgrade {
+		transform-origin: center center;
+		transform: translate(-50%, -50%) rotate(45deg);
+	}
+}

@@ -5,16 +5,16 @@ export function Checkbox({
 	checked,
 	setChecked,
 	checkboxAttrs: { className: checkboxClassName, ...checkboxProps } = {},
-	labelAttrs: { className: labelClassName, ...labelProps } = {},
 	visibleCheckboxAttrs: { className: visibleCheckboxClassName, ...visibleCheckboxProps } = {},
+	className: labelClassName = "",
+	...labelProps
 }: {
 	checked: boolean;
 	setChecked: (value: boolean, event: React.ChangeEvent<HTMLInputElement>) => void;
 
 	checkboxAttrs?: JSX.IntrinsicElements["input"];
-	labelAttrs?: JSX.IntrinsicElements["label"];
 	visibleCheckboxAttrs?: JSX.IntrinsicElements["span"];
-}) {
+} & JSX.IntrinsicElements["label"]) {
 	return (
 		<label className={`${styles.label} ${labelClassName || ""}`} {...labelProps}>
 			<input

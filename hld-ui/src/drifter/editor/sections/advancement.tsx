@@ -1,5 +1,4 @@
-import produce, { Draft } from "immer";
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterAdvancement } from "../../rules";
 import { Checkbox } from "../components/Checkbox";
@@ -8,6 +7,7 @@ import { NumericInput } from "../components/NumericInput";
 import { TextAreaInput } from "../components/TextAreaInput";
 import { ValueInput } from "../components/ValueInput";
 import styles from "./advancement.module.css";
+import { useSyncCheckboxes } from "../../../utils/useSyncCheckboxes";
 
 const xpLens = createLens(
 	(i: DrifterAdvancement) => i.xp,
@@ -61,32 +61,7 @@ export const AdvancementSection = ({ advancement }: { advancement: Stateful<Drif
 	const [agility, setAgility] = useLens(advancement, agilityLens);
 	const [insight, setInsight] = useLens(advancement, insightLens);
 	const [presence, setPresence] = useLens(advancement, presenceLens);
-	const [individualXp, setIndividualXp] = useState<boolean[]>(Array(20).fill(false));
-
-	useEffect(() => {
-		setIndividualXp(old => {
-			if (sumXp(old) === xp) return old;
-			return [...Array(xp).fill(true), ...Array(20 - xp).fill(false)];
-		});
-	}, [xp, setIndividualXp]);
-
-	function checkboxSetter(index: number) {
-		return (checked: boolean) => {
-			setIndividualXp(
-				produce((individualXp: Draft<boolean[]>) => {
-					individualXp[index] = checked;
-					const count = sumXp(individualXp);
-					if (count !== xp) {
-						setXp(count);
-					}
-				})
-			);
-		};
-	}
-
-	function sumXp(xp: Readonly<boolean[]>) {
-		return xp.reduce((xp, value) => xp + (value ? 1 : 0), 0);
-	}
+	const [individualXp, checkboxSetter] = useSyncCheckboxes(xp, setXp, 20);
 
 	return (
 		<>
