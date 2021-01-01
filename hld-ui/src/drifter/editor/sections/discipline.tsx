@@ -1,8 +1,8 @@
 import React from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterDiscipline } from "../../rules";
-import { FormSection } from "../components/FormSection";
 import { ThresholdEditor } from "../components/ThresholdEditor";
+import styles from "./discipline.module.css";
 
 const combatLens = createLens(
 	(i: DrifterDiscipline) => i.combat,
@@ -33,7 +33,7 @@ export const DisciplineSection = ({ discipline }: { discipline: Stateful<Drifter
 	const survival = useLens(discipline, survivalLens);
 
 	return (
-		<div className="discipline">
+		<div className={`discipline ${styles.discipline}`}>
 			<ThresholdEditor label="Combat" threshold={combat} />
 			<ThresholdEditor label="Social" threshold={social} />
 			<ThresholdEditor label="Manipulative" threshold={manipulative} />

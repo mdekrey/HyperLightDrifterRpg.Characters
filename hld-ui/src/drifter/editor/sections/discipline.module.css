@@ -1,0 +1,4 @@
+.discipline {
+	@apply grid gap-1;
+	grid-template-rows: repeat(5, 1fr);
+}
