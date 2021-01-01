@@ -3,6 +3,91 @@
 	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
 	grid-template-rows: auto auto;
 	grid-template-areas:
-		"xp xp xp xp"
+		"title title title title"
+		"xp-1 xp-2 xp-3 xp-4"
 		"advancement-1 advancement-2 advancement-3 advancement-4";
+
+	h3 {
+		grid-area: title;
+	}
+}
+
+.xp {
+	@apply grid text-xl mb-2 justify-items-center justify-center content-center;
+	grid-template-rows: auto auto auto;
+	grid-template-columns: auto auto;
+	grid-template-areas:
+		"named named"
+		"general-1 general-2"
+		"general-3 general-4";
+	transform: rotate(-45deg);
+
+	&.xp-1 {
+		grid-area: xp-1;
+	}
+	&.xp-2 {
+		grid-area: xp-2;
+	}
+	&.xp-3 {
+		grid-area: xp-3;
+	}
+	&.xp-4 {
+		grid-area: xp-4;
+	}
+
+	:first-child {
+		grid-area: named;
+		@apply mb-1;
+	}
+}
+
+.advancement-grit {
+	@apply grid gap-1;
+	grid-template:
+		"header header"
+		"vigor-input vigor-label"
+		"agility-input agility-label";
+
+	h3 {
+		@apply text-pink-light mx-4 mb-0;
+		grid-area: header;
+	}
+
+	input.vigor {
+		grid-area: vigor-input;
+	}
+	label.vigor {
+		grid-area: vigor-label;
+	}
+	input.agility {
+		grid-area: agility-input;
+	}
+	label.agility {
+		grid-area: agility-label;
+	}
+}
+.advancement-nerve {
+	@apply grid justify-end text-right gap-1;
+	grid-template:
+		"header header"
+		"insight-label insight-input"
+		"presence-label presence-input";
+
+	h3 {
+		@apply text-pink-light mx-4 mb-0;
+		grid-area: header;
+	}
+
+	input.insight {
+		grid-area: insight-input;
+	}
+	label.insight {
+		grid-area: insight-label;
+	}
+	input.presence {
+		grid-area: presence-input;
+	}
+	label.presence {
+		grid-area: presence-label;
+	}
 }

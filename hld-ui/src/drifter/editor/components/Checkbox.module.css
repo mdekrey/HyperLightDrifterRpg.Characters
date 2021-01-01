@@ -1,0 +1,17 @@
+.label {
+	@apply cursor-pointer;
+	height: 1em;
+
+	input + .visible-checkbox {
+		@apply bg-black border-pink border-2 inline-block;
+		height: 1em;
+		width: 1em;
+	}
+
+	input:checked + .visible-checkbox {
+		@apply bg-pink-light;
+	}
+	input:focus + .visible-checkbox {
+		@apply border-white;
+	}
+}

@@ -1,6 +1,8 @@
-import React from "react";
+import produce, { Draft } from "immer";
+import React, { useState, useEffect } from "react";
 import { createLens, Stateful, useLens } from "../../../utils/useLens";
 import { DrifterAdvancement } from "../../rules";
+import { Checkbox } from "../components/Checkbox";
 import { FormSection } from "../components/FormSection";
 import { NumericInput } from "../components/NumericInput";
 import { TextAreaInput } from "../components/TextAreaInput";
@@ -59,12 +61,69 @@ export const AdvancementSection = ({ advancement }: { advancement: Stateful<Drif
 	const [agility, setAgility] = useLens(advancement, agilityLens);
 	const [insight, setInsight] = useLens(advancement, insightLens);
 	const [presence, setPresence] = useLens(advancement, presenceLens);
+	const [individualXp, setIndividualXp] = useState<boolean[]>(Array(20).fill(false));
+
+	useEffect(() => {
+		setIndividualXp(old => {
+			if (sumXp(old) === xp) return old;
+			return [...Array(xp).fill(true), ...Array(20 - xp).fill(false)];
+		});
+	}, [xp, setIndividualXp]);
+
+	function checkboxSetter(index: number) {
+		return (checked: boolean) => {
+			setIndividualXp(
+				produce((individualXp: Draft<boolean[]>) => {
+					individualXp[index] = checked;
+					const count = sumXp(individualXp);
+					if (count !== xp) {
+						setXp(count);
+					}
+				})
+			);
+		};
+	}
+
+	function sumXp(xp: Readonly<boolean[]>) {
+		return xp.reduce((xp, value) => xp + (value ? 1 : 0), 0);
+	}
 
 	return (
 		<>
-			<div className={styles.advancementXp}>
-				<div style={{ gridArea: "xp" }}>
-					<FormSection label="XP" fields={id => <NumericInput id={id} value={xp} setValue={setXp} />} />
+			<section className={`${styles.advancementXp} advancement-xp`}>
+				<h3>Advancement</h3>
+				<FormSection
+					label="XP"
+					className="sr-only"
+					fields={id => <NumericInput className="sr-only" id={id} value={xp} setValue={setXp} />}
+				/>
+				<div className={`${styles.xp} ${styles.xp1}`}>
+					<Checkbox checked={individualXp[0]} setChecked={checkboxSetter(0)} />
+					<Checkbox checked={individualXp[1]} setChecked={checkboxSetter(1)} />
+					<Checkbox checked={individualXp[2]} setChecked={checkboxSetter(2)} />
+					<Checkbox checked={individualXp[3]} setChecked={checkboxSetter(3)} />
+					<Checkbox checked={individualXp[4]} setChecked={checkboxSetter(4)} />
+				</div>
+				<div className={`${styles.xp} ${styles.xp2}`}>
+					<Checkbox checked={individualXp[5]} setChecked={checkboxSetter(5)} />
+					<Checkbox checked={individualXp[6]} setChecked={checkboxSetter(6)} />
+					<Checkbox checked={individualXp[7]} setChecked={checkboxSetter(7)} />
+					<Checkbox checked={individualXp[8]} setChecked={checkboxSetter(8)} />
+					<Checkbox checked={individualXp[9]} setChecked={checkboxSetter(9)} />
+				</div>
+				<div className={`${styles.xp} ${styles.xp3}`}>
+					<Checkbox checked={individualXp[10]} setChecked={checkboxSetter(10)} />
+					<Checkbox checked={individualXp[11]} setChecked={checkboxSetter(11)} />
+					<Checkbox checked={individualXp[12]} setChecked={checkboxSetter(12)} />
+					<Checkbox checked={individualXp[13]} setChecked={checkboxSetter(13)} />
+					<Checkbox checked={individualXp[14]} setChecked={checkboxSetter(14)} />
+				</div>
+				<div className={`${styles.xp} ${styles.xp4}`}>
+					<Checkbox checked={individualXp[15]} setChecked={checkboxSetter(15)} />
+					<Checkbox checked={individualXp[16]} setChecked={checkboxSetter(16)} />
+					<Checkbox checked={individualXp[17]} setChecked={checkboxSetter(17)} />
+					<Checkbox checked={individualXp[18]} setChecked={checkboxSetter(18)} />
+					<Checkbox checked={individualXp[19]} setChecked={checkboxSetter(19)} />
 				</div>
 				<FormSection
 					label="Advancement 1"
@@ -86,28 +145,43 @@ export const AdvancementSection = ({ advancement }: { advancement: Stateful<Drif
 					className="sr-only"
 					fields={id => <ValueInput id={id} value={namedAdvancement3} setValue={setNamedAdvancement3} />}
 				/>
-			</div>
+			</section>
 
 			<div className="advancement-perks vertical-editor">
 				<FormSection label="Perks" fields={id => <TextAreaInput id={id} value={perks} setValue={setPerks} />} />
 			</div>
-			<div className="advancement-grit">
-				<FormSection label="Vigor" fields={id => <NumericInput id={id} value={vigor} setValue={setVigor} />} />
+			<section className={`${styles.advancementGrit} advancement-grit`}>
+				<h3>Grit</h3>
+				<FormSection
+					label="Vigor"
+					className={styles.vigor}
+					fields={id => <NumericInput id={id} className={styles.vigor} value={vigor} setValue={setVigor} />}
+				/>
 				<FormSection
 					label="Agility"
-					fields={id => <NumericInput id={id} value={agility} setValue={setAgility} />}
+					className={styles.agility}
+					fields={id => (
+						<NumericInput id={id} className={styles.agility} value={agility} setValue={setAgility} />
+					)}
 				/>
-			</div>
-			<div className="advancement-nerve">
+			</section>
+			<section className={`${styles.advancementNerve} advancement-nerve`}>
+				<h3>Nerve</h3>
 				<FormSection
 					label="Insight"
-					fields={id => <NumericInput id={id} value={insight} setValue={setInsight} />}
+					className={styles.insight}
+					fields={id => (
+						<NumericInput id={id} className={styles.insight} value={insight} setValue={setInsight} />
+					)}
 				/>
 				<FormSection
 					label="Presence"
-					fields={id => <NumericInput id={id} value={presence} setValue={setPresence} />}
+					className={styles.presence}
+					fields={id => (
+						<NumericInput id={id} className={styles.presence} value={presence} setValue={setPresence} />
+					)}
 				/>
-			</div>
+			</section>
 		</>
 	);
 };
