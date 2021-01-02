@@ -283,8 +283,8 @@ function newlines(v: string) {
 
 export function drifterToPdf(drifter: Drifter): Partial<SheetHLDv5> {
 	return {
-		Name: { value: drifter.identity.name },
-		Pronouns: { value: drifter.identity.pronouns },
+		Name: { value: drifter.identity.name, generateAppearance: true },
+		Pronouns: { value: drifter.identity.pronouns, generateAppearance: true },
 		"Character Description": { value: newlines(drifter.identity.description) },
 		Mission: { value: newlines(drifter.identity.mission) },
 		Class: { value: drifter.features.drifterClass },
