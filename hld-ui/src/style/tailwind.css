@@ -88,8 +88,8 @@ input[type="number"] {
 }
 
 .vertical-editor {
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-rows: auto auto 1fr;
 
 	:not(:last-child) {
 		border-bottom: none;
