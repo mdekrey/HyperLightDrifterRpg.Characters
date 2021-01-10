@@ -1,22 +1,57 @@
 .hld-character {
-	@apply grid gap-1 max-w-full;
-	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
-	grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+	@apply grid gap-1 max-w-full mx-1;
+	grid-template-columns: 1fr;
+	grid-auto-rows: auto;
 	grid-template-areas:
-		"identity-portrait identity-name identity-name corruption corruption corruption"
-		"identity-portrait identity-name identity-name resource-resistance resource-armor discipline"
-		"identity-portrait features-class features-class resource-resistance resource-armor discipline"
-		"identity-portrait features-class features-class resource-health resource-health discipline"
-		"identity-portrait features-trait features-trait resource-health resource-health discipline"
-		"identity-portrait features-trait features-trait resource-energy resource-energy discipline"
-		"identity-portrait advancement-xp advancement-xp resource-energy resource-energy discipline"
-		"identity-mission advancement-xp advancement-xp resource-energy resource-energy discipline"
-		"identity-mission advancement-xp advancement-xp resource-boost resource-boost discipline"
-		"identity-mission advancement-perks advancement-perks dashes dashes discipline"
-		"identity-description advancement-perks advancement-perks dashes dashes discipline"
-		"identity-description advancement-grit advancement-nerve conditions-woe conditions-woe discipline"
-		"talents-list equipment equipment conditions-boons conditions-boons discipline"
-		"talents-passive talent-1 talent-2 talent-3 talent-4 talent-dash";
+		"identity-portrait"
+		"identity-name"
+		"features-class"
+		"features-trait"
+		"identity-mission"
+		"identity-description"
+		"discipline"
+		"advancement-xp"
+		"advancement-perks"
+		"advancement-grit"
+		"advancement-nerve"
+		"equipment"
+		"resource-health"
+		"resource-energy"
+		"resource-resistance"
+		"resource-armor"
+		"resource-boost"
+		"dashes"
+		"conditions-woe"
+		"conditions-boons"
+		"corruption"
+		"talents-list"
+		"talents-passive"
+		"talent-1"
+		"talent-2"
+		"talent-3"
+		"talent-4"
+		"talent-dash";
+	@media (min-width: 1024px) {
+		@apply mx-0;
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+		grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+		grid-auto-rows: initial;
+		grid-template-areas:
+			"identity-portrait identity-name identity-name corruption corruption corruption"
+			"identity-portrait identity-name identity-name resource-resistance resource-armor discipline"
+			"identity-portrait features-class features-class resource-resistance resource-armor discipline"
+			"identity-portrait features-class features-class resource-health resource-health discipline"
+			"identity-portrait features-trait features-trait resource-health resource-health discipline"
+			"identity-portrait features-trait features-trait resource-energy resource-energy discipline"
+			"identity-portrait advancement-xp advancement-xp resource-energy resource-energy discipline"
+			"identity-mission advancement-xp advancement-xp resource-energy resource-energy discipline"
+			"identity-mission advancement-xp advancement-xp resource-boost resource-boost discipline"
+			"identity-mission advancement-perks advancement-perks dashes dashes discipline"
+			"identity-description advancement-perks advancement-perks dashes dashes discipline"
+			"identity-description advancement-grit advancement-nerve conditions-woe conditions-woe discipline"
+			"talents-list equipment equipment conditions-boons conditions-boons discipline"
+			"talents-passive talent-1 talent-2 talent-3 talent-4 talent-dash";
+	}
 
 	:global {
 		.identity-portrait {
